@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-42/Problems/prob065/models/opd.mzn">Download</a>
-<pre >%% Design of Collateralised Debt Obligations Squared (CDO^2) Transactions
+<pre class ='brush: mzn'>%% Design of Collateralised Debt Obligations Squared (CDO^2) Transactions
 %%
 %% Problem described in:
 %%   Pierre Flener, Justin Pearson, Luis G. Reyna, Olof Sivertsson:
@@ -108,7 +108,7 @@
 % the dot product beween any pair of distinct rows is minimal.
 
 
-%Requires MiniZinc >= 2.0.2 for the symmetry_breaking_constraint predicate
+%Requires MiniZinc &gt;= 2.0.2 for the symmetry_breaking_constraint predicate
 
 include "lex_greatereq.mzn";
 
@@ -146,8 +146,8 @@ array [rows, cols] of var 0..1: m;
 constraint forall (i in rows) (sum (j in cols) (m[i, j]) = r);
 
 % The dot product of every pair of distinct rows must be at most lambda for an OPD and a PD, and equal to lambda for a BIBD
-constraint forall (i_a, i_b in rows where i_a < i_b) (
-    sum (j in cols) (m[i_a, j] * m[i_b, j]) <= objective
+constraint forall (i_a, i_b in rows where i_a &lt; i_b) (
+    sum (j in cols) (m[i_a, j] * m[i_b, j]) &lt;= objective
 );
 
 
@@ -174,7 +174,7 @@ solve
 % Disabled the full solution. Printing only the objective value, lower bound, and parameters.
 output  ["opd: (v = ", show(v), ", b = ", show(b), ", r = ", show(r), "). Found lambda = ", show(objective),"\tlb: ", show(lb_lambda)]
 %       ++["\n\n"] ++ 
-%	[ ( if j > b then "\n" else 
+%	[ ( if j &gt; b then "\n" else 
 %	        if fix(m[i,j])=1 then "*" else " " endif
 %	    endif )
 %       | i in rows, j in 1..(b + 1) ]
@@ -191,7 +191,7 @@ output  ["opd: (v = ", show(v), ", b = ", show(b), ", r = ", show(r), "). Found 
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-42/js/shBrushEssence.js'],
-    ['minizinc', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
+    ['minizinc','mzn', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-42/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushErlang.js'],

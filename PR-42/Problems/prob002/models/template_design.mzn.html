@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-42/Problems/prob002/models/template_design.mzn">Download</a>
-<pre >%-----------------------------------------------------------------------------%
+<pre class ='brush: mzn'>%-----------------------------------------------------------------------------%
 % Template design
 % Problem 002 in CSPLib
 %-----------------------------------------------------------------------------%
@@ -104,7 +104,7 @@ array[1..n] of int: d; 	% How much of each variation we must print?
 % Lower and upper bounds for the total production.
 %
 int: llower = ceil(sum(i in 1..n)(int2float(d[i]))/int2float(S));
-int: lupper = 2*llower; % If t>1, this should be the optimal Production_{t-1}-1.
+int: lupper = 2*llower; % If t&gt;1, this should be the optimal Production_{t-1}-1.
 
 % # Slots allocated to variation i in template j
 array[1..n,1..t] of var 0..S: p;
@@ -124,7 +124,7 @@ constraint
 
 % the limits on production
 constraint
-	Production >= llower /\ Production <= lupper;
+	Production &gt;= llower /\ Production &lt;= lupper;
 
 % The number of slots occupied in each template is S.
 constraint
@@ -134,7 +134,7 @@ constraint
 % Enough of each variation is printed.
 constraint
 	forall(i in 1..n)
-		 (sum(j in 1..t)(p[i,j]*R[j]) >= d[i]);
+		 (sum(j in 1..t)(p[i,j]*R[j]) &gt;= d[i]);
 
 % Symmetry constraints.
 % Variations with the same demand are symmetric.
@@ -151,9 +151,9 @@ constraint
 % pseudo symmetry
 constraint
 	forall(i in 1..n-1) (
-		if d[i] < d[i+1] then
+		if d[i] &lt; d[i+1] then
 		       sum (j in 1..t) (p[i,j]*R[j])
-		     < sum (j in 1..t) (p[i+1,j]*R[j])
+		     &lt; sum (j in 1..t) (p[i+1,j]*R[j])
 		else
 			true
 		endif
@@ -172,25 +172,25 @@ constraint
 % The surplus of each variation is also limited by the surplus.
 constraint
 	forall(k in 1..n)
-		 (sum(j in 1..t)(p[k,j]*R[j]-d[k]) <= Surplus);
+		 (sum(j in 1..t)(p[k,j]*R[j]-d[k]) &lt;= Surplus);
 
 % The surplus of the first k variations is limited by the surplus.
 constraint
 	forall(k in 2..n-1)
-		 (sum(j in 1..t, m in 1..k)( p[m,j]*R[j]-d[m] ) <= Surplus);
+		 (sum(j in 1..t, m in 1..k)( p[m,j]*R[j]-d[m] ) &lt;= Surplus);
 
 % Implied constraints on the run length.
 constraint
 	if t=2 then (
-		R[1] <= Production div 2
-	/\	R[2] >= Production div 2
+		R[1] &lt;= Production div 2
+	/\	R[2] &gt;= Production div 2
 	) else true endif;
 
 constraint
 	if t=3 then (
-		R[1] <= Production div 3
-	/\	R[2] <= Production div 2
-	/\	R[3] >= Production div 3
+		R[1] &lt;= Production div 3
+	/\	R[2] &lt;= Production div 2
+	/\	R[3] &gt;= Production div 3
 	) else true endif;
 
 % Minimize the production.
@@ -219,7 +219,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-42/js/shBrushEssence.js'],
-    ['minizinc', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
+    ['minizinc','mzn', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-42/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushErlang.js'],

@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-42/Problems/prob012/models/non.mzn">Download</a>
-<pre >include "globals.mzn";
+<pre class ='brush: mzn'>include "globals.mzn";
 int: X;
 int: Y;
 
@@ -144,11 +144,11 @@ predicate nonogram(array[int] of var 1..2: A, array [int] of int: cons) =
      );
 
 constraint forall(i in 1..Y) (
-    nonogram_row(A, [rows[i, j] | j in 1..maxlen where rows[i, j] >= 0], i)
+    nonogram_row(A, [rows[i, j] | j in 1..maxlen where rows[i, j] &gt;= 0], i)
 );
 
 constraint forall(i in 1..X) (
-    nonogram_col(A, [cols[i, j] | j in 1..maxlen where cols[i, j] >= 0], i)
+    nonogram_col(A, [cols[i, j] | j in 1..maxlen where cols[i, j] &gt;= 0], i)
 );
 
 solve :: int_search(array1d(1..X*Y,A),input_order,indomain_max,complete) satisfy;
@@ -171,7 +171,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-42/js/shBrushEssence.js'],
-    ['minizinc', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
+    ['minizinc','mzn', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-42/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushErlang.js'],

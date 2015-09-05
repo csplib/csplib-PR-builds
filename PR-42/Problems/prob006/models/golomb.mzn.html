@@ -85,14 +85,14 @@
 
 
 <a href="/csplib-PR-builds/PR-42/Problems/prob006/models/golomb.mzn">Download</a>
-<pre >%-----------------------------------------------------------------------------%
+<pre class ='brush: mzn'>%-----------------------------------------------------------------------------%
 % Golomb rulers
 % prob006 in csplib
 %-----------------------------------------------------------------------------%
 % From csplib:
-% A Golomb ruler may be defined as a set of m integers 0 = a_1 < a_2 <
-% ... < a_m such that the m(m-1)/2 differences a_j - a_i, 1 <= i < j
-% <= m are distinct. Such a ruler is said to contain m marks and is of
+% A Golomb ruler may be defined as a set of m integers 0 = a_1 &lt; a_2 &lt;
+% ... &lt; a_m such that the m(m-1)/2 differences a_j - a_i, 1 &lt;= i &lt; j
+% &lt;= m are distinct. Such a ruler is said to contain m marks and is of
 % length a_m. The objective is to find optimal (minimum length) or
 % near optimal rulers.
 %
@@ -111,12 +111,12 @@ array[1..(m*(m-1)) div 2] of var 0..n: differences =
 
 constraint mark[1] = 0;
 
-constraint forall ( i in 1..m-1 ) ( mark[i] < mark[i+1] );
+constraint forall ( i in 1..m-1 ) ( mark[i] &lt; mark[i+1] );
 
 constraint alldifferent(differences);
 
     % Symmetry breaking
-constraint differences[1] < differences[(m*(m-1)) div 2];
+constraint differences[1] &lt; differences[(m*(m-1)) div 2];
 
 solve :: int_search(mark, input_order, indomain, complete)
     minimize mark[m];
@@ -138,7 +138,7 @@ output [show(mark)];
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-42/js/shBrushEssence.js'],
-    ['minizinc', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
+    ['minizinc','mzn', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-42/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushErlang.js'],

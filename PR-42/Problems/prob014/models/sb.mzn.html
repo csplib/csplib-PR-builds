@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-42/Problems/prob014/models/sb.mzn">Download</a>
-<pre >% new zinc file SolitaireBattleships.mzn
+<pre class ='brush: mzn'>% new zinc file SolitaireBattleships.mzn
 % At attempt to build a solution entirely within the IDE
 % By Peter Stuckey August 2009
 % Solitaire Battleships is a puzzle where
@@ -160,21 +160,21 @@ constraint forall(i in XROWS, j in XCOLS)(
 constraint forall(i in ROWS, j in COLS)(
 	   (board[i,j] == w \/ board[i+1,j+1] == w)
 	/\ (board[i,j] == w \/ board[i+1,j-1] == w)   % diagonal constraints
-            /\ (board[i,j] in {c,l,r,t} -> board[i-1,j] == w)
-            /\ (board[i,j] in {c,l,r,b} -> board[i+1,j] == w)
-            /\ (board[i,j] in {c,l,t,b} -> board[i,j-1] == w)
-            /\ (board[i,j] in {c,r,t,b} -> board[i,j+1] == w)
+            /\ (board[i,j] in {c,l,r,t} -&gt; board[i-1,j] == w)
+            /\ (board[i,j] in {c,l,r,b} -&gt; board[i+1,j] == w)
+            /\ (board[i,j] in {c,l,t,b} -&gt; board[i,j-1] == w)
+            /\ (board[i,j] in {c,r,t,b} -&gt; board[i,j+1] == w)
            );
                			                       
 % ship shape constraints
 constraint forall(i in ROWS, j in COLS)(
                %% a left piece needs a right piece or middle to the right
-			   (board[i,j] == l -> (board[i,j+1] == r \/ board[i,j+1] == m))
-			/\ (board[i,j] == r -> (board[i,j-1] == l \/ board[i,j-1] == m))
-			/\ (board[i,j] == t -> (board[i+1,j] == b \/ board[i+1,j] == m))
-			/\ (board[i,j] == b -> (board[i-1,j] == t \/ board[i-1,j] == m))
+			   (board[i,j] == l -&gt; (board[i,j+1] == r \/ board[i,j+1] == m))
+			/\ (board[i,j] == r -&gt; (board[i,j-1] == l \/ board[i,j-1] == m))
+			/\ (board[i,j] == t -&gt; (board[i+1,j] == b \/ board[i+1,j] == m))
+			/\ (board[i,j] == b -&gt; (board[i-1,j] == t \/ board[i-1,j] == m))
 			   %% a middle piece has to have two opposite sides filled
-			/\ (board[i,j] == m -> (   fill[i-1,j] == fill[i+1,j]
+			/\ (board[i,j] == m -&gt; (   fill[i-1,j] == fill[i+1,j]
 			                        /\ fill[i,j-1] == fill[i,j+1]
 			                        /\ fill[i-1,j] + fill[i,j-1] == 1))
 		   );
@@ -199,12 +199,12 @@ constraint npiece[m] == sum(s in cruiser..maxship)(ship[s] * (s - 2));
 % and still be guaranteed a correct solution    
 constraint forall(s in destroyer..maxship)(
 	           sum(i in ROWS,j in COLS)(bool2int(
-			       if j + s - 1 <= width then
+			       if j + s - 1 &lt;= width then
 			          board[i,j] == l /\ board[i,j+s-1] == r     % ship length s lr
 			       /\ forall(k in j+1..j+s-2)(board[i,k] == m)
 			       else false endif
 			    \/
-			       if i + s - 1 <= height then
+			       if i + s - 1 &lt;= height then
 			          board[i,j] == t /\ board[i+s-1,j] == b     % ship length s tb
 			       /\ forall(k in i+1..i+s-2)(board[k,j] == m)
 			       else false endif
@@ -246,7 +246,7 @@ output [ code[fix(board[i,j])] ++
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-42/js/shBrushEssence.js'],
-    ['minizinc', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
+    ['minizinc','mzn', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-42/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushErlang.js'],

@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-42/Problems/prob049/models/partition.mzn">Download</a>
-<pre >%-----------------------------------------------------------------------------%
+<pre class ='brush: mzn'>%-----------------------------------------------------------------------------%
 % Partitioning problem
 %
 % Guido Tack
@@ -115,9 +115,9 @@ array[1..n] of var 1..2*n: y;
 
 constraint true
     %   Break symmetries by ordering numbers in each group
-    /\  forall (i in 2..n) (x[i-1] < x[i] /\ y[i-1] < y[i])
+    /\  forall (i in 2..n) (x[i-1] &lt; x[i] /\ y[i-1] &lt; y[i])
     %   Break symmetries by ordering the groups
-    /\  x[1] < y[1]
+    /\  x[1] &lt; y[1]
     
     %   Partition the numbers
     /\  (alldifferent(x++y)) :: bounds
@@ -157,7 +157,7 @@ output
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-42/js/shBrushEssence.js'],
-    ['minizinc', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
+    ['minizinc','mzn', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-42/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushErlang.js'],

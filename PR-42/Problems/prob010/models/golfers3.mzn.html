@@ -85,9 +85,9 @@
 
 
 <a href="/csplib-PR-builds/PR-42/Problems/prob010/models/golfers3.mzn">Download</a>
-<pre >% golfers.mzn
+<pre class ='brush: mzn'>% golfers.mzn
 % vim: ft=zinc ts=4 sw=4 et tw=0
-% Ralph Becket <rafe@csse.unimelb.edu.au>
+% Ralph Becket &lt;rafe@csse.unimelb.edu.au&gt;
 % Mon Oct 29 13:56:25 EST 2007
 %
 % The social golfers problem, see
@@ -130,18 +130,18 @@ constraint
     % Symmetry breaking.
     %
 % constraint
-%     forall (r in rounds, g in groups where g < n_groups) (
-%         round_group_golfers[r, g] < round_group_golfers[r, g + 1]
+%     forall (r in rounds, g in groups where g &lt; n_groups) (
+%         round_group_golfers[r, g] &lt; round_group_golfers[r, g + 1]
 %     );
 
     % Each pair may play together at most once.
     %
 constraint
-    forall (a, b in golfers where a < b) (
+    forall (a, b in golfers where a &lt; b) (
         sum (r in rounds, g in groups) (
             bool2int({a, b} subset round_group_golfers[r, g])
         )
-    <=
+    &lt;=
         1
     );
 
@@ -172,7 +172,7 @@ output [    ( if   g = 1
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-42/js/shBrushEssence.js'],
-    ['minizinc', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
+    ['minizinc','mzn', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-42/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushErlang.js'],

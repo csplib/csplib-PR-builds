@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-42/Problems/prob030/models/curriculum.mzn">Download</a>
-<pre >% The balanced academic curriculum problem: see
+<pre class ='brush: mzn'>% The balanced academic curriculum problem: see
 % http://www.dcs.st-and.ac.uk/~ianm/CSPLib/prob/prob030/spec.html
 %
 % A curriculum is a set of courses with prerequisites.
@@ -130,26 +130,26 @@ var load_per_period_lb..load_per_period_ub: objective;
 
 constraint forall(p in periods) (
     forall(c in courses) (x[p,c] = bool2int(course_period[c] = p)) /\
-    sum(i in courses) (x[p,i]) >= courses_per_period_lb /\
-    sum(i in courses) (x[p,i]) <= courses_per_period_ub /\
+    sum(i in courses) (x[p,i]) &gt;= courses_per_period_lb /\
+    sum(i in courses) (x[p,i]) &lt;= courses_per_period_ub /\
     load[p] = sum(c in courses) (x[p,c] * course_load[c]) /\
-    load[p] >= load_per_period_lb /\
-    load[p] <= objective
+    load[p] &gt;= load_per_period_lb /\
+    load[p] &lt;= objective
 );
 
 % prerequisite(a, b) means "course a has prerequisite course b".
 
 predicate prerequisite(courses: a, courses: b) =
-    course_period[b] < course_period[a];
+    course_period[b] &lt; course_period[a];
 
 % add some redundant linear constraints
 
 constraint forall(p in 0..n_periods-1) (
     let {
-		var 0..max_course_load: l = sum(c in courses) (bool2int(course_period[c] > p) * course_load[c])
+		var 0..max_course_load: l = sum(c in courses) (bool2int(course_period[c] &gt; p) * course_load[c])
 	} in 
-        l >= (n_periods-p) * load_per_period_lb /\
-        l <= (n_periods-p) * objective
+        l &gt;= (n_periods-p) * load_per_period_lb /\
+        l &lt;= (n_periods-p) * objective
     );
 
 solve :: seq_search([
@@ -173,7 +173,7 @@ output
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-42/js/shBrushEssence.js'],
-    ['minizinc', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
+    ['minizinc','mzn', '/csplib-PR-builds/PR-42/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-42/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-42/syntax_highlighter/shBrushErlang.js'],
