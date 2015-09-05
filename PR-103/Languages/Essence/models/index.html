@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- <link rel="shortcut icon" href="../../assets/ico/favicon.png"> -->
+
+	<title>Essence</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/csplib-PR-builds/PR-103/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<link href="/csplib-PR-builds/PR-103/css/main.css" rel="stylesheet">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+
+	<!-- Enable table sorting -->
+	<script src="/csplib-PR-builds/PR-103/js/tablesorter/jquery.tablesorter.min.js"></script>
+	<link rel="stylesheet" href="/csplib-PR-builds/PR-103/js/tablesorter/blue/style.css" type="text/css"/>
+	<script type="text/javascript">
+	$(function() {
+		$(".tablesorter").tablesorter();
+	});
+	</script>
+
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML.js">
+	MathJax.Hub.Config({
+	  	tex2jax: {
+	    inlineMath: [['$','$'], ['\\(','\\)']],
+	    processEscapes: true
+	  	}
+	});
+	</script>
+
+
+</head>
+
+<body>
+
+	<ol class="breadcrumb">
+    	  <li><a href="/csplib-PR-builds/PR-103/">CSPLib</a></li>
+
+  <li><a href="/csplib-PR-builds/PR-103/Languages">Languages</a></li>
+  <li><a href="/csplib-PR-builds/PR-103/Languages/Essence">Essence</a></li>
+
+  <li><a href="/csplib-PR-builds/PR-103/Languages/Essence/models">Models</a></li>
+	</ol>
+
+	<div class="container">
+
+		<div class="page-header">
+			<h1>Essence</h1>
+
+
+<!-- macro to Not made a link if on the page the link links to -->
+
+
+<nav id="navigation">
+<ul>
+   	<li><a href="/csplib-PR-builds/PR-103/Languages/Essence/">Specification</a></li>
+
+   	<li><a href="/csplib-PR-builds/PR-103/Languages/Essence/data">Data files</a></li>
+
+   	<li><a href="/csplib-PR-builds/PR-103/Languages/Essence/references">References</a></li>
+
+  	<li><p>Models</p></li>
+
+   	<li><a href="/csplib-PR-builds/PR-103/Languages/Essence/cite">Cite</a></li>
+
+</ul>
+</nav>
+
+
+
+		</div>
+
+
+
+	<table class="tablesorter">
+	<thead>
+	<tr>  <th>File</th>  <th>Problem</th>  <th>Notes</th>  </tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob001/models/prob001-CarSeq.essence.html">
+				prob001-CarSeq.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob001">
+			001: Car Sequencing
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob012/models/nonogram.essence.html">
+				nonogram.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob012">
+			012: Nonogram
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob027/models/prob027-alientiles-singlepass.essence.html">
+				prob027-alientiles-singlepass.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob027">
+			027: Alien Tiles Problem
+			</a>
+		</td>
+		<td>
+		Natural model of problem as stated, but very expensive. Will only solve (via conjure/savilerow) very small problems, roughly such that grid+colours &lt;= 5
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob027/models/prob027-alientiles-multipass.zip">
+				prob027-alientiles-multipass.zip
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob027">
+			027: Alien Tiles Problem
+			</a>
+		</td>
+		<td>
+		Model using equivalence to determine minimality. Based on method used by Gent, Linton and Smith
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob030/models/prob030-Bacp.essence.html">
+				prob030-Bacp.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob030">
+			030: Balanced Academic Curriculum Problem (BACP)
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob040/models/Wag-40.essence.html">
+				Wag-40.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob040">
+			040: A Distribution Problem with Wagner-Whitin Costs
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob042/models/diagnosis-single.essence.html">
+				diagnosis-single.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob042">
+			042: diagnosis
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob044/models/steiner.essence.html">
+				steiner.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob044">
+			044: Steiner triple systems
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob048/models/prob048-MEB.essence.html">
+				prob048-MEB.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob048">
+			048: Minimum Energy Broadcast (MEB)
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob049/models/set_partition_simple.essence.html">
+				set_partition_simple.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob049">
+			049: Number Partitioning
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob049/models/set_partition_full.essence.html">
+				set_partition_full.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob049">
+			049: Number Partitioning
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob051/models/TankAlloc-051.essence.html">
+				TankAlloc-051.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob051">
+			051: Tank Allocation
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob054/models/nqueens.essence.html">
+				nqueens.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob054">
+			054: N-Queens
+			</a>
+		</td>
+		<td>
+		N-Queens in Essence
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob055/models/prob055-EFPA.essence.html">
+				prob055-EFPA.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob055">
+			055: Equidistant Frequency Permutation Arrays
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob056/models/sonet.essence.html">
+				sonet.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob056">
+			056: Synchronous Optical Networking (SONET) Problem
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob057/models/KillerSudoku.essence.html">
+				KillerSudoku.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob057">
+			057: Killer Sudoku
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob065/models/opd.essence.html">
+				opd.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob065">
+			065: Optimal Financial Portfolio Design
+			</a>
+		</td>
+		<td>
+		Using a set-of-sets variable
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob132/models/layout.essence.html">
+				layout.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob132">
+			132: A Layout Problem
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="../../../Problems/prob133/models/knapsack.essence.html">
+				knapsack.essence
+			</a>
+		</td>
+		<td>
+			<a href="../../../Problems/prob133">
+			133: Knapsack Problem
+			</a>
+		</td>
+		<td>
+		
+		</td>
+	</tr>
+	</tbody>
+	</table>
+
+
+
+	</div>
+
+
+
+</div>
+
+<div id="footer">
+ 
+    <center><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. </center>
+
+</div>
+  <!-- float footer to bottom of page -->
+  <script>
+
+    $(document).ready(function() {
+
+     var docHeight = $(window).height();
+     var footerHeight = $('#footer').height();
+     var footerTop = $('#footer').position().top + footerHeight;
+
+     if (footerTop + 20 < docHeight) {
+      $('#footer').css('margin-top',  (docHeight - (footerTop + 20)) + 'px');
+     }
+    });
+   </script>
+</body>
+
+</html>
