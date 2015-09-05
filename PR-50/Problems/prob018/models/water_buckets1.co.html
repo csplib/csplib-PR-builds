@@ -85,11 +85,11 @@
 
 
 <a href="/csplib-PR-builds/PR-50/Problems/prob018/models/water_buckets1.co">Download</a>
-<pre >/*
+<pre class ='brush: comet'>/*
 
   Water buckets problem in Comet.
 
-  From http://www.dis.uniroma1.it/~tmancini/index.php?currItem=research.publications.webappendices.csplib2x.problemDetails&problemid=018
+  From http://www.dis.uniroma1.it/~tmancini/index.php?currItem=research.publications.webappendices.csplib2x.problemDetails&amp;problemid=018
   """
   Problem description
   This is a generalization of the CSPLib specification, which is as follows: 
@@ -127,7 +127,7 @@
   """
 
   Translation from the OPL code at
-  http://www.dis.uniroma1.it/~tmancini/index.php?problemid=018&solver=OPL&spec=BASE&currItem=research.publications.webappendices.csplib2x.problemDetails#listing
+  http://www.dis.uniroma1.it/~tmancini/index.php?problemid=018&amp;solver=OPL&amp;spec=BASE&amp;currItem=research.publications.webappendices.csplib2x.problemDetails#listing
 
 
   Compare with the MIP model http://www.hakank.org/3_jugs.co
@@ -156,12 +156,12 @@ int start[buckets]= [8,0,0];
 int goal[buckets]= [4,4,0];
 
 
-Solver<CP> m();
+Solver&lt;CP&gt; m();
 
 // Assertions
 forall(b in buckets) {
-  assert(start[b] <= capacity[b] &&
-         goal[b] <= capacity[b]);
+  assert(start[b] &lt;= capacity[b] &amp;&amp;
+         goal[b] &lt;= capacity[b]);
 }
 assert( (sum(b in buckets)(start[b]) == sum(b in buckets)(goal[b])));
 
@@ -170,15 +170,15 @@ assert( (sum(b in buckets)(start[b]) == sum(b in buckets)(goal[b])));
 // Search space: The set of all possibile sequences of configurations 
 // (states), where a configuration is a triple encoding the amount of 
 // water in each bucket at a given time-step
-var<CP>{int} state[s in steps,b in buckets](m, 0..capacity[b]);
-var<CP>{int} goal_step(m, 1..max_step); // Objective function
+var&lt;CP&gt;{int} state[s in steps,b in buckets](m, 0..capacity[b]);
+var&lt;CP&gt;{int} goal_step(m, 1..max_step); // Objective function
 
  // For the AUX constraint, see below.
-var<CP>{bool} change[1..max_step-1, buckets](m);
+var&lt;CP&gt;{bool} change[1..max_step-1, buckets](m);
 
 Integer num_solutions(0);
 
-minimize<m> goal_step subject to {
+minimize&lt;m&gt; goal_step subject to {
 
   forall(b in buckets) {
     // C1: At beginning, buckets contain the amount of water specified by 
@@ -194,7 +194,7 @@ minimize<m> goal_step subject to {
     // hakank: This works as well
     /*
     forall(i in 1..max_step)
-      m.post(i == goal_step => state[i, b] == goal[b]);
+      m.post(i == goal_step =&gt; state[i, b] == goal[b]);
     */
   }
 
@@ -213,10 +213,10 @@ minimize<m> goal_step subject to {
     forall(b1 in buckets, b2 in buckets : b1 != b2) {
       m.post(
              (
-              (state[step, b1] != state[step+1, b1]) && 
+              (state[step, b1] != state[step+1, b1]) &amp;&amp; 
               (state[step, b2] != state[step+1, b2])
               ) 
-             =>
+             =&gt;
              (
               state[step+1,b1] == 0 || 
               state[step+1,b1] == capacity[b1] ||
@@ -229,7 +229,7 @@ minimize<m> goal_step subject to {
   }
 
   // From the second version
-  // http://www.dis.uniroma1.it/~tmancini/index.php?problemid=018&solver=OPL&spec=AUX&currItem=research.publications.webappendices.csplib2x.problemDetails#listing
+  // http://www.dis.uniroma1.it/~tmancini/index.php?problemid=018&amp;solver=OPL&amp;spec=AUX&amp;currItem=research.publications.webappendices.csplib2x.problemDetails#listing
   // AUX: Addition of auxiliary predicates
   // Auxiliary predicate stores, for each time step, which buckets change 
   // their amount of water wrt the next one
@@ -245,27 +245,27 @@ minimize<m> goal_step subject to {
 
   num_solutions := num_solutions + 1;
 
-  cout << "goal_step: " << goal_step << endl;
+  cout &lt;&lt; "goal_step: " &lt;&lt; goal_step &lt;&lt; endl;
   forall(s in steps) {
-    if (s <= goal_step) {
+    if (s &lt;= goal_step) {
       forall(b in buckets) {
-        cout << state[s,b] << " ";
+        cout &lt;&lt; state[s,b] &lt;&lt; " ";
       }
-      cout << endl;
+      cout &lt;&lt; endl;
     }
   }
-  cout << endl;
+  cout &lt;&lt; endl;
     
 
 }
 
-cout << "\nnum_solutions: " << num_solutions << endl;
+cout &lt;&lt; "\nnum_solutions: " &lt;&lt; num_solutions &lt;&lt; endl;
     
 int t1 = System.getCPUTime();
-cout << "time:      " << (t1-t0) << endl;
-cout << "#choices = " << m.getNChoice() << endl;
-cout << "#fail    = " << m.getNFail() << endl;
-cout << "#propag  = " << m.getNPropag() << endl;
+cout &lt;&lt; "time:      " &lt;&lt; (t1-t0) &lt;&lt; endl;
+cout &lt;&lt; "#choices = " &lt;&lt; m.getNChoice() &lt;&lt; endl;
+cout &lt;&lt; "#fail    = " &lt;&lt; m.getNFail() &lt;&lt; endl;
+cout &lt;&lt; "#propag  = " &lt;&lt; m.getNPropag() &lt;&lt; endl;
 
 
 </pre>
@@ -281,6 +281,7 @@ cout << "#propag  = " << m.getNPropag() << endl;
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-50/js/shBrushEssence.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-50/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-50/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-50/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushErlang.js'],

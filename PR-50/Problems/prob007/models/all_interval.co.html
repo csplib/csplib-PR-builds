@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-50/Problems/prob007/models/all_interval.co">Download</a>
-<pre >/*
+<pre class ='brush: comet'>/*
 
   
   All interval problem in Comet.
@@ -139,15 +139,15 @@ int t0 = System.getCPUTime();
 int n = 12;
 int sum_distinct = ((n+1)*n) / 2;
 
-Solver<CP> m();
+Solver&lt;CP&gt; m();
 
-var<CP>{int} x[1..n](m, 1..n);
-var<CP>{int} diffs[1..n-1](m, 1..n-1);
+var&lt;CP&gt;{int} x[1..n](m, 1..n);
+var&lt;CP&gt;{int} diffs[1..n-1](m, 1..n-1);
 
 
 Integer num_solutions(0);
 
-exploreall<m> {
+exploreall&lt;m&gt; {
 
   forall(k in 1..n-1) 
     m.post(diffs[k] == abs(x[k+1] - x[k]), onValues);
@@ -157,21 +157,21 @@ exploreall<m> {
 
 
   // symmetry breaking
-  m.post(x[1] < x[n-1], onValues);
-  m.post(diffs[1] < diffs[2], onValues);
+  m.post(x[1] &lt; x[n-1], onValues);
+  m.post(diffs[1] &lt; diffs[2], onValues);
 
 
 } using {
 
   /*
   forall(i in 1..n : !x[i].bound()) by (-x[i].getSize()) {
-    // tryall<m>(v in 1..n)
+    // tryall&lt;m&gt;(v in 1..n)
     //  m.label(x[i], v);
     label(x[i]);
   }
 
   forall(i in 1..n-1 : !diffs[i].bound()) by (diffs[i].getSize()) {
-    // tryall<m>(v in 1..n)
+    // tryall&lt;m&gt;(v in 1..n)
     //   m.label(x[i], v);
     label(diffs[i]);
   }
@@ -188,19 +188,19 @@ exploreall<m> {
   num_solutions := num_solutions + 1;
 
       
-  cout << x << " " << sum_distinct << " " << diffs <<  endl;
-  cout << flush;
+  cout &lt;&lt; x &lt;&lt; " " &lt;&lt; sum_distinct &lt;&lt; " " &lt;&lt; diffs &lt;&lt;  endl;
+  cout &lt;&lt; flush;
 
 }
 
-// cout << x << endl;
-cout << "\nnum_solutions: " << num_solutions << endl;
+// cout &lt;&lt; x &lt;&lt; endl;
+cout &lt;&lt; "\nnum_solutions: " &lt;&lt; num_solutions &lt;&lt; endl;
     
 int t1 = System.getCPUTime();
-cout << "time:      " << (t1-t0) << endl;
-cout << "#choices = " << m.getNChoice() << endl;
-cout << "#fail    = " << m.getNFail() << endl;
-cout << "#propag  = " << m.getNPropag() << endl;
+cout &lt;&lt; "time:      " &lt;&lt; (t1-t0) &lt;&lt; endl;
+cout &lt;&lt; "#choices = " &lt;&lt; m.getNChoice() &lt;&lt; endl;
+cout &lt;&lt; "#fail    = " &lt;&lt; m.getNFail() &lt;&lt; endl;
+cout &lt;&lt; "#propag  = " &lt;&lt; m.getNPropag() &lt;&lt; endl;
 
 
 </pre>
@@ -216,6 +216,7 @@ cout << "#propag  = " << m.getNPropag() << endl;
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-50/js/shBrushEssence.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-50/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-50/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-50/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushErlang.js'],

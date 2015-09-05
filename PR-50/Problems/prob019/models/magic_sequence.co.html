@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-50/Problems/prob019/models/magic_sequence.co">Download</a>
-<pre >/*
+<pre class ='brush: comet'>/*
 
   Magic sequence in Comet.
 
@@ -123,8 +123,8 @@ range Domain = 0..n;
 
 int value[i in Range] = i;
 
-Solver<CP> m();
-var<CP>{int} s[Range](m, Domain);
+Solver&lt;CP&gt; m();
+var&lt;CP&gt;{int} s[Range](m, Domain);
 
 Integer num_solutions(0);
 
@@ -134,23 +134,23 @@ Integer num_solutions(0);
 //
 // Imitates the OPL constraint distribute.
 //
-class distribute extends UserConstraint<CP> {
-  var<CP>{int}[] _occurrence;
+class distribute extends UserConstraint&lt;CP&gt; {
+  var&lt;CP&gt;{int}[] _occurrence;
   int[] _value;
-  var<CP>{int}[] _element;
+  var&lt;CP&gt;{int}[] _element;
   int _n;
   
-  distribute(var<CP>{int}[] occurrence,
+  distribute(var&lt;CP&gt;{int}[] occurrence,
              int[] value,
-             var<CP>{int}[] element) : UserConstraint<CP>() {
+             var&lt;CP&gt;{int}[] element) : UserConstraint&lt;CP&gt;() {
     _occurrence = occurrence;
     _value = value;
     _element = element;
     _n = _occurrence.getSize();      
   }
 
-  Outcome<CP> post(Consistency<CP> cl) {
-    Solver<CP> cp = _occurrence[1].getSolver();
+  Outcome&lt;CP&gt; post(Consistency&lt;CP&gt; cl) {
+    Solver&lt;CP&gt; cp = _occurrence[1].getSolver();
     range Range = _occurrence.getRange();
     forall(i in Range) 
       cp.post(sum(j in Range) (_occurrence[j] == _value[i]) == _element[i]);
@@ -158,14 +158,14 @@ class distribute extends UserConstraint<CP> {
     return Suspend;
   }
 
-  Outcome<CP> propagate() { 
+  Outcome&lt;CP&gt; propagate() { 
     return Suspend;
   }
 
 }
 
 
-explore<m> {
+explore&lt;m&gt; {
 
   /*
   // original constraint
@@ -186,18 +186,18 @@ explore<m> {
 
   num_solutions++;
       
-  cout << s << endl;
+  cout &lt;&lt; s &lt;&lt; endl;
 
 }
 
 
-cout << "\nnum_solutions: " << num_solutions << endl;
+cout &lt;&lt; "\nnum_solutions: " &lt;&lt; num_solutions &lt;&lt; endl;
     
 int t1 = System.getCPUTime();
-cout << "time:      " << (t1-t0) << endl;
-cout << "#choices = " << m.getNChoice() << endl;
-cout << "#fail    = " << m.getNFail() << endl;
-cout << "#propag  = " << m.getNPropag() << endl;
+cout &lt;&lt; "time:      " &lt;&lt; (t1-t0) &lt;&lt; endl;
+cout &lt;&lt; "#choices = " &lt;&lt; m.getNChoice() &lt;&lt; endl;
+cout &lt;&lt; "#fail    = " &lt;&lt; m.getNFail() &lt;&lt; endl;
+cout &lt;&lt; "#propag  = " &lt;&lt; m.getNPropag() &lt;&lt; endl;
 
 
 </pre>
@@ -213,6 +213,7 @@ cout << "#propag  = " << m.getNPropag() << endl;
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-50/js/shBrushEssence.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-50/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-50/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-50/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushErlang.js'],

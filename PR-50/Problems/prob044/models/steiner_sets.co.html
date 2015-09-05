@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-50/Problems/prob044/models/steiner_sets.co">Download</a>
-<pre >/*
+<pre class ='brush: comet'>/*
   
   Steiner triplets (using sets) in Comet.
  
@@ -99,19 +99,19 @@
 import cotfd;
 int t0 = System.getCPUTime();
 
-Solver<CP> cp();
+Solver&lt;CP&gt; cp();
 
 int n = 9;
 int nb = n *(n-1) / 6;
-cout << "nb: " << nb << endl;
+cout &lt;&lt; "nb: " &lt;&lt; nb &lt;&lt; endl;
 
 int c = 3; // cardinality
-var<CP>{set{int}} steiner[1..nb](cp, 1..n, c);
+var&lt;CP&gt;{set{int}} steiner[1..nb](cp, 1..n, c);
 
 Integer num_solutions(0);
 
-exploreall<cp>{
-  forall(i in 1..nb, j in 1..nb : i < j) {
+exploreall&lt;cp&gt;{
+  forall(i in 1..nb, j in 1..nb : i &lt; j) {
     cp.post(atmostIntersection(steiner[i], steiner[j], 1));
   }
 } using {
@@ -120,20 +120,20 @@ exploreall<cp>{
   forall(i in 1..nb)
     label(steiner[i]);
 
-  cout << steiner << endl;
+  cout &lt;&lt; steiner &lt;&lt; endl;
 
   num_solutions := num_solutions + 1;
 
 }
 
 
-cout << "\nnum_solutions: " << num_solutions << endl;
+cout &lt;&lt; "\nnum_solutions: " &lt;&lt; num_solutions &lt;&lt; endl;
     
 int t1 = System.getCPUTime();
-cout << "time:      " << (t1-t0) << endl;
-cout << "#choices = " << cp.getNChoice() << endl;
-cout << "#fail    = " << cp.getNFail() << endl;
-cout << "#propag  = " << cp.getNPropag() << endl;
+cout &lt;&lt; "time:      " &lt;&lt; (t1-t0) &lt;&lt; endl;
+cout &lt;&lt; "#choices = " &lt;&lt; cp.getNChoice() &lt;&lt; endl;
+cout &lt;&lt; "#fail    = " &lt;&lt; cp.getNFail() &lt;&lt; endl;
+cout &lt;&lt; "#propag  = " &lt;&lt; cp.getNPropag() &lt;&lt; endl;
 
 
 </pre>
@@ -149,6 +149,7 @@ cout << "#propag  = " << cp.getNPropag() << endl;
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-50/js/shBrushEssence.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-50/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-50/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-50/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushErlang.js'],

@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-50/Problems/prob001/models/car.co">Download</a>
-<pre >/*
+<pre class ='brush: comet'>/*
 
   Car sequencing in Comet.
 
@@ -138,29 +138,29 @@ Tcapacity capacity[Options] =
 
 int optionDemand[i in Options] = sum(j in Cars) demand[j] * option[i,j];
 
-cout << "optionDemand: " << optionDemand<< endl;
+cout &lt;&lt; "optionDemand: " &lt;&lt; optionDemand&lt;&lt; endl;
 
-Solver<CP> m();
+Solver&lt;CP&gt; m();
 
-var<CP>{int} slot[Slots](m,Cars);
-var<CP>{int} setup[Options,Slots](m,0..1);
+var&lt;CP&gt;{int} slot[Slots](m,Cars);
+var&lt;CP&gt;{int} setup[Options,Slots](m,0..1);
 
 Integer num_solutions(0);
 
-// exploreall<m> {
-minimize<m> sum(s in Cars) s*slot[s] subject to {
+// exploreall&lt;m&gt; {
+minimize&lt;m&gt; sum(s in Cars) s*slot[s] subject to {
 
   forall(c in Cars )
     m.post(sum(s in Slots ) (slot[s] == c) == demand[c]);
 
   forall(o in Options, s in 1..nbSlots - capacity[o].u + 1)
-    m.post(sum(j in s..s + capacity[o].u - 1) setup[o,j] <= capacity[o].l);
+    m.post(sum(j in s..s + capacity[o].u - 1) setup[o,j] &lt;= capacity[o].l);
 
   forall(o in Options, s in Slots )
     m.post(setup[o,s] == option[o,slot[s]]);
 
   forall(o in Options, i in 1..optionDemand[o])
-    m.post(sum(s in 1..(nbSlots - i * capacity[o].u)) setup[o,s] >=
+    m.post(sum(s in 1..(nbSlots - i * capacity[o].u)) setup[o,s] &gt;=
            (optionDemand[o] - i * capacity[o].l));
 
 
@@ -170,28 +170,28 @@ minimize<m> sum(s in Cars) s*slot[s] subject to {
 
   num_solutions := num_solutions + 1;
 
-  cout << slot << endl;
+  cout &lt;&lt; slot &lt;&lt; endl;
   forall(o in Options) {
-    cout << capacity[o].l << "/" << capacity[o].u << ": " ;
+    cout &lt;&lt; capacity[o].l &lt;&lt; "/" &lt;&lt; capacity[o].u &lt;&lt; ": " ;
     forall(s in Slots) {
-      cout << setup[o,s] << " ";
+      cout &lt;&lt; setup[o,s] &lt;&lt; " ";
     }
-  cout << endl;
+  cout &lt;&lt; endl;
   }
-  cout << endl;
+  cout &lt;&lt; endl;
     
 
 
 }
 
 
-cout << "\nnum_solutions: " << num_solutions << endl;
+cout &lt;&lt; "\nnum_solutions: " &lt;&lt; num_solutions &lt;&lt; endl;
     
 int t1 = System.getCPUTime();
-cout << "time:      " << (t1-t0) << endl;
-cout << "#choices = " << m.getNChoice() << endl;
-cout << "#fail    = " << m.getNFail() << endl;
-cout << "#propag  = " << m.getNPropag() << endl;
+cout &lt;&lt; "time:      " &lt;&lt; (t1-t0) &lt;&lt; endl;
+cout &lt;&lt; "#choices = " &lt;&lt; m.getNChoice() &lt;&lt; endl;
+cout &lt;&lt; "#fail    = " &lt;&lt; m.getNFail() &lt;&lt; endl;
+cout &lt;&lt; "#propag  = " &lt;&lt; m.getNPropag() &lt;&lt; endl;
 
 
 </pre>
@@ -207,6 +207,7 @@ cout << "#propag  = " << m.getNPropag() << endl;
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-50/js/shBrushEssence.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-50/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-50/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-50/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushErlang.js'],

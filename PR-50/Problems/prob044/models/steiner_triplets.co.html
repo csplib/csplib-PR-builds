@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-50/Problems/prob044/models/steiner_triplets.co">Download</a>
-<pre >/*
+<pre class ='brush: comet'>/*
 
   Steiner triplets in Comet.
 
@@ -127,22 +127,22 @@ int t0 = System.getCPUTime();
 int n = 7;
 int nb = (n * (n-1)) / 6;
 
-cout << "n: " << n << " nb: " << nb << endl;
+cout &lt;&lt; "n: " &lt;&lt; n &lt;&lt; " nb: " &lt;&lt; nb &lt;&lt; endl;
 
-Solver<CP> m();
+Solver&lt;CP&gt; m();
 
-var<CP>{bool} sets[1..nb, 1..n](m);
+var&lt;CP&gt;{bool} sets[1..nb, 1..n](m);
 
 Integer num_solutions(0);
 
-exploreall<m> {
-// explore<m> {
+exploreall&lt;m&gt; {
+// explore&lt;m&gt; {
 
   forall(i in 1..nb) 
     m.post(sum(j in 1..n) sets[i,j] == 3);
 
   forall(i in 1..nb, j in i+1..nb) {
-    m.post( sum(k in 1..n) ( sets[i,k] && sets[j,k]) <= 1);    
+    m.post( sum(k in 1..n) ( sets[i,k] &amp;&amp; sets[j,k]) &lt;= 1);    
   }
 
   // symmetry breaking
@@ -159,21 +159,21 @@ exploreall<m> {
   forall(i in 1..nb) {
     forall(j in 1..n) {
       if (sets[i,j]) 
-        cout << j << " ";
+        cout &lt;&lt; j &lt;&lt; " ";
     }
-    cout << endl;
+    cout &lt;&lt; endl;
   }
-  cout << endl;
+  cout &lt;&lt; endl;
 
 }
 
-cout << "\nnum_solutions: " << num_solutions << endl;
+cout &lt;&lt; "\nnum_solutions: " &lt;&lt; num_solutions &lt;&lt; endl;
     
 int t1 = System.getCPUTime();
-cout << "time:      " << (t1-t0) << endl;
-cout << "#choices = " << m.getNChoice() << endl;
-cout << "#fail    = " << m.getNFail() << endl;
-cout << "#propag  = " << m.getNPropag() << endl;
+cout &lt;&lt; "time:      " &lt;&lt; (t1-t0) &lt;&lt; endl;
+cout &lt;&lt; "#choices = " &lt;&lt; m.getNChoice() &lt;&lt; endl;
+cout &lt;&lt; "#fail    = " &lt;&lt; m.getNFail() &lt;&lt; endl;
+cout &lt;&lt; "#propag  = " &lt;&lt; m.getNPropag() &lt;&lt; endl;
 
 
 </pre>
@@ -189,6 +189,7 @@ cout << "#propag  = " << m.getNPropag() << endl;
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-50/js/shBrushEssence.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-50/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-50/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-50/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushErlang.js'],

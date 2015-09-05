@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-50/Problems/prob021/models/crossfigure.co">Download</a>
-<pre >/*
+<pre class ='brush: comet'>/*
 
   Crossfigure in Comet.
 
@@ -169,54 +169,54 @@ int n = 9;
 
 range D = 0..9999; // the max length of the numbers in this problem is 4
 
-Solver<CP> m();
+Solver&lt;CP&gt; m();
 
-var<CP>{int} M[1..n, 1..n](m, 0..9);
+var&lt;CP&gt;{int} M[1..n, 1..n](m, 0..9);
 
-var<CP>{int} A1(m, D);
-var<CP>{int} A4(m, D);
-var<CP>{int} A7(m, D);
-var<CP>{int} A8(m, D);
-var<CP>{int} A9(m, D);
-var<CP>{int} A10(m, D);
-var<CP>{int} A11(m, D);
-var<CP>{int} A13(m, D);
-var<CP>{int} A15(m, D);
-var<CP>{int} A17(m, D);
-var<CP>{int} A20(m, D);
-var<CP>{int} A23(m, D);
-var<CP>{int} A24(m, D);
-var<CP>{int} A25(m, D);
-var<CP>{int} A27(m, D);
-var<CP>{int} A28(m, D);
-var<CP>{int} A29(m, D);
-var<CP>{int} A30(m, D);
+var&lt;CP&gt;{int} A1(m, D);
+var&lt;CP&gt;{int} A4(m, D);
+var&lt;CP&gt;{int} A7(m, D);
+var&lt;CP&gt;{int} A8(m, D);
+var&lt;CP&gt;{int} A9(m, D);
+var&lt;CP&gt;{int} A10(m, D);
+var&lt;CP&gt;{int} A11(m, D);
+var&lt;CP&gt;{int} A13(m, D);
+var&lt;CP&gt;{int} A15(m, D);
+var&lt;CP&gt;{int} A17(m, D);
+var&lt;CP&gt;{int} A20(m, D);
+var&lt;CP&gt;{int} A23(m, D);
+var&lt;CP&gt;{int} A24(m, D);
+var&lt;CP&gt;{int} A25(m, D);
+var&lt;CP&gt;{int} A27(m, D);
+var&lt;CP&gt;{int} A28(m, D);
+var&lt;CP&gt;{int} A29(m, D);
+var&lt;CP&gt;{int} A30(m, D);
 
-var<CP>{int} D1(m, D);
-var<CP>{int} D2(m, D);
-var<CP>{int} D3(m, D);
-var<CP>{int} D4(m, D);
-var<CP>{int} D5(m, D);
-var<CP>{int} D6(m, D);
-var<CP>{int} D10(m, D);
-var<CP>{int} D12(m, D);
-var<CP>{int} D14(m, D);
-var<CP>{int} D16(m, D);
-var<CP>{int} D17(m, D);
-var<CP>{int} D18(m, D);
-var<CP>{int} D19(m, D);
-var<CP>{int} D20(m, D);
-var<CP>{int} D21(m, D);
-var<CP>{int} D22(m, D);
-var<CP>{int} D26(m, D);
-var<CP>{int} D28(m, D);
+var&lt;CP&gt;{int} D1(m, D);
+var&lt;CP&gt;{int} D2(m, D);
+var&lt;CP&gt;{int} D3(m, D);
+var&lt;CP&gt;{int} D4(m, D);
+var&lt;CP&gt;{int} D5(m, D);
+var&lt;CP&gt;{int} D6(m, D);
+var&lt;CP&gt;{int} D10(m, D);
+var&lt;CP&gt;{int} D12(m, D);
+var&lt;CP&gt;{int} D14(m, D);
+var&lt;CP&gt;{int} D16(m, D);
+var&lt;CP&gt;{int} D17(m, D);
+var&lt;CP&gt;{int} D18(m, D);
+var&lt;CP&gt;{int} D19(m, D);
+var&lt;CP&gt;{int} D20(m, D);
+var&lt;CP&gt;{int} D21(m, D);
+var&lt;CP&gt;{int} D22(m, D);
+var&lt;CP&gt;{int} D26(m, D);
+var&lt;CP&gt;{int} D28(m, D);
 
 
 //
-// Convert array <-> number
+// Convert array &lt;-&gt; number
 //
-function void toNum10(var<CP>{int}[] x, var<CP>{int} num) {
-  Solver<CP> m = x[1].getSolver();
+function void toNum10(var&lt;CP&gt;{int}[] x, var&lt;CP&gt;{int} num) {
+  Solver&lt;CP&gt; m = x[1].getSolver();
 
   int start = x.getLow();
   int end = x.getHigh();
@@ -232,10 +232,10 @@ function void toNum10(var<CP>{int}[] x, var<CP>{int} num) {
 	'Len' digits starting at position (Row, Col) of the array 'Matrix'
 	and proceeding across.
 */
-function void across(var<CP>{int}[,] Matrix, var<CP>{int} Across, int Len, int Row, int Col) {
+function void across(var&lt;CP&gt;{int}[,] Matrix, var&lt;CP&gt;{int} Across, int Len, int Row, int Col) {
 
-  Solver<CP> m = Matrix[1,1].getSolver();
-  var<CP>{int} tmp[1..Len](m, 0..9999);
+  Solver&lt;CP&gt; m = Matrix[1,1].getSolver();
+  var&lt;CP&gt;{int} tmp[1..Len](m, 0..9999);
 
   toNum10(tmp, Across);
   forall(i in 0..Len-1) {
@@ -249,10 +249,10 @@ function void across(var<CP>{int}[,] Matrix, var<CP>{int} Across, int Len, int R
 	'Len' digits starting at position (Row, Col) of the array 'Matrix'
 	and proceeding down.
 */
-function void down(var<CP>{int}[,] Matrix, var<CP>{int} Across, int Len, int Row, int Col) {
+function void down(var&lt;CP&gt;{int}[,] Matrix, var&lt;CP&gt;{int} Across, int Len, int Row, int Col) {
 
-  Solver<CP> m = Matrix[1,1].getSolver();
-  var<CP>{int} tmp[1..Len](m, 0..9999);
+  Solver&lt;CP&gt; m = Matrix[1,1].getSolver();
+  var&lt;CP&gt;{int} tmp[1..Len](m, 0..9999);
 
   toNum10(tmp, Across);
   forall(i in 0..Len-1) {
@@ -263,16 +263,16 @@ function void down(var<CP>{int}[,] Matrix, var<CP>{int} Across, int Len, int Row
 /*
  x is a prime (is not needed, since I found m.inside)
 */
-function void is_prime(Solver<CP> m, var<CP>{int} x) {
+function void is_prime(Solver&lt;CP&gt; m, var&lt;CP&gt;{int} x) {
   forall(i in 2..x.getMax() / 2)
-    m.post(i != x => x % i > 0);
+    m.post(i != x =&gt; x % i &gt; 0);
 }
 
 //
 // x is a square (is not needed, since I found m.inside)
 //
-function void square(Solver<CP> m, var<CP>{int} x) {
-  var<CP>{int} tmp(m, 0..x.getSize());
+function void square(Solver&lt;CP&gt; m, var&lt;CP&gt;{int} x) {
+  var&lt;CP&gt;{int} tmp(m, 0..x.getSize());
   m.post(x == tmp^2);
 }
 
@@ -280,7 +280,7 @@ function void square(Solver<CP> m, var<CP>{int} x) {
 
 Integer num_solutions(0);
 
-exploreall<m> {
+exploreall&lt;m&gt; {
 
    // Set up the constraints between the matrix elements and the
    // clue numbers.
@@ -436,22 +436,22 @@ exploreall<m> {
 
   forall(i in 1..n) {
     forall(j in 1..n) {
-      cout << M[i,j] << " ";
+      cout &lt;&lt; M[i,j] &lt;&lt; " ";
     }
-    cout << endl;
+    cout &lt;&lt; endl;
   }
-  cout << endl;
+  cout &lt;&lt; endl;
 
 }
 
 
-cout << "\nnum_solutions: " << num_solutions << endl;
+cout &lt;&lt; "\nnum_solutions: " &lt;&lt; num_solutions &lt;&lt; endl;
     
 int t1 = System.getCPUTime();
-cout << "time:      " << (t1-t0) << endl;
-cout << "#choices = " << m.getNChoice() << endl;
-cout << "#fail    = " << m.getNFail() << endl;
-cout << "#propag  = " << m.getNPropag() << endl;
+cout &lt;&lt; "time:      " &lt;&lt; (t1-t0) &lt;&lt; endl;
+cout &lt;&lt; "#choices = " &lt;&lt; m.getNChoice() &lt;&lt; endl;
+cout &lt;&lt; "#fail    = " &lt;&lt; m.getNFail() &lt;&lt; endl;
+cout &lt;&lt; "#propag  = " &lt;&lt; m.getNPropag() &lt;&lt; endl;
 
 </pre>
 
@@ -466,6 +466,7 @@ cout << "#propag  = " << m.getNPropag() << endl;
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-50/js/shBrushEssence.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-50/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-50/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-50/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushErlang.js'],

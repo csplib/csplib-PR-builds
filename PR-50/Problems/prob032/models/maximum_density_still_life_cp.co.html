@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-50/Problems/prob032/models/maximum_density_still_life_cp.co">Download</a>
-<pre >/*
+<pre class ='brush: comet'>/*
 
   Maximum density still life in Comet.
 
@@ -95,7 +95,7 @@
   This model was inspired by the OPL model from
   Toni Mancini, Davide Micaletto, Fabio Patrizi, Marco Cadoli: 
   "Evaluating ASP and commercial solvers on the CSPLib"
-  http://www.dis.uniroma1.it/~tmancini/index.php?problemid=032&solver=OPL&spec=BASE&currItem=research.publications.webappendices.csplib2x.problemDetails#listing
+  http://www.dis.uniroma1.it/~tmancini/index.php?problemid=032&amp;solver=OPL&amp;spec=BASE&amp;currItem=research.publications.webappendices.csplib2x.problemDetails#listing
 
 
   This Comet model was created by Hakan Kjellerstrand (hakank@gmail.com)
@@ -116,22 +116,22 @@ range checkConstraintsBoardCoord = 1..size+2;
 range augmentedBoardCoord        = 0..size+3;
 
 
-Solver<CP> m();
+Solver&lt;CP&gt; m();
 
 // Search space: The set of all possible assignments of 0s (dead) and 1s (live) 
 // to the cells of the board section. However, to be able to easily express 
 // constraints on "boundary" cells, we take as search space the set of 0/1 
 // boards of size n+4 by n+4: the actual stable pattern appears in the sub-board 
 // defined by ignoring the first/last two rows/columns.
-var<CP>{int} grid[augmentedBoardCoord,augmentedBoardCoord](m, 0..1);
+var&lt;CP&gt;{int} grid[augmentedBoardCoord,augmentedBoardCoord](m, 0..1);
 
 // Objective function: Maximize the number of live cells in the sub-board defined 
 // by ignoring the first/last two/ rows/columns.
 
 Integer num_solutions(0);
 
-// exploreall<m> {
-maximize<m> 
+// exploreall&lt;m&gt; {
+maximize&lt;m&gt; 
    sum(r in objFunctionBoardCoord, c in objFunctionBoardCoord) (grid[r,c])
 subject to {
 
@@ -156,21 +156,21 @@ subject to {
         grid[r,c-1] + grid[r,c+1] + 
         grid[r+1,c-1] + grid[r+1,c] + grid[r+1,c+1]
         ) == 3 
-             ) => (grid[r,c] == 1));
+             ) =&gt; (grid[r,c] == 1));
     
     // C3: Each live cell must have 2 or 3 live neighbors (cells of the first/last 
     // row/column may be ignored by this constraint)
-    m.post((grid[r,c] == 1) => (
-                        2 <= 
+    m.post((grid[r,c] == 1) =&gt; (
+                        2 &lt;= 
                         ( grid[r-1,c-1] + grid[r-1,c] + grid[r-1,c+1] +
                           grid[r,c-1] + grid[r,c+1] +
                           grid[r+1,c-1] + grid[r+1,c] + grid[r+1,c+1] 
                           )
-                        && 
+                        &amp;&amp; 
                         ( grid[r-1,c-1] + grid[r-1,c] + grid[r-1,c+1] +
                           grid[r,c-1] + grid[r,c+1] +
                           grid[r+1,c-1] + grid[r+1,c] + grid[r+1,c+1] 
-                          ) <= 3
+                          ) &lt;= 3
                                 ));
   }
   
@@ -182,8 +182,8 @@ subject to {
   // must be dead too 
   // - if the NE-corner cell is dead, the SW-corner cell must be dead too
   // 
-  m.post(grid[2,2] >= grid[size+1,size+1]);
-  m.post(grid[2,size+1] >= grid[size+1,2]);
+  m.post(grid[2,2] &gt;= grid[size+1,size+1]);
+  m.post(grid[2,size+1] &gt;= grid[size+1,2]);
 
 } using {
       
@@ -197,22 +197,22 @@ subject to {
 
   forall(i in augmentedBoardCoord) {
     forall(j in augmentedBoardCoord) {
-      cout << grid[i,j] << " ";
+      cout &lt;&lt; grid[i,j] &lt;&lt; " ";
     }
-    cout << endl;
+    cout &lt;&lt; endl;
   }
-  cout << endl;
+  cout &lt;&lt; endl;
 
 
 }
 
-cout << "\nnum_solutions: " << num_solutions << endl;
+cout &lt;&lt; "\nnum_solutions: " &lt;&lt; num_solutions &lt;&lt; endl;
     
 int t1 = System.getCPUTime();
-cout << "time:      " << (t1-t0) << endl;
-cout << "#choices = " << m.getNChoice() << endl;
-cout << "#fail    = " << m.getNFail() << endl;
-cout << "#propag  = " << m.getNPropag() << endl;
+cout &lt;&lt; "time:      " &lt;&lt; (t1-t0) &lt;&lt; endl;
+cout &lt;&lt; "#choices = " &lt;&lt; m.getNChoice() &lt;&lt; endl;
+cout &lt;&lt; "#fail    = " &lt;&lt; m.getNFail() &lt;&lt; endl;
+cout &lt;&lt; "#propag  = " &lt;&lt; m.getNPropag() &lt;&lt; endl;
 
 
 </pre>
@@ -228,6 +228,7 @@ cout << "#propag  = " << m.getNPropag() << endl;
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-50/js/shBrushEssence.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-50/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-50/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-50/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushErlang.js'],

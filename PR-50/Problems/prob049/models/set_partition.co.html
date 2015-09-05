@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-50/Problems/prob049/models/set_partition.co">Download</a>
-<pre >/*
+<pre class ='brush: comet'>/*
 
   Set partition problem in Comet.
   
@@ -126,14 +126,14 @@ int num_sets = 2;
 
 assert(n % num_sets == 0); // sanity: is the partition possible?
 
-Solver<CP> m();
+Solver&lt;CP&gt; m();
 
-var<CP>{bool} a[1..num_sets, 1..n](m); // the set
+var&lt;CP&gt;{bool} a[1..num_sets, 1..n](m); // the set
 
 
 Integer num_solutions(0);
 
-exploreall<m> {
+exploreall&lt;m&gt; {
 
   forall(i in 1..num_sets, j in i+1..num_sets) {
 
@@ -161,44 +161,44 @@ exploreall<m> {
 
   num_solutions := num_solutions + 1;
 
-  cout << "sums: " << sum(j in 1..n) j*a[1,j] << endl;
-  cout << "sums squared: " << (sum(j in 1..n) (j*a[1,j])^2) << endl;
+  cout &lt;&lt; "sums: " &lt;&lt; sum(j in 1..n) j*a[1,j] &lt;&lt; endl;
+  cout &lt;&lt; "sums squared: " &lt;&lt; (sum(j in 1..n) (j*a[1,j])^2) &lt;&lt; endl;
 
   // show the partitions
   forall(i in 1..num_sets) {
-    if ( sum(j in 1..n) a[i,j] > 0) {
-      cout << i << ": ";
+    if ( sum(j in 1..n) a[i,j] &gt; 0) {
+      cout &lt;&lt; i &lt;&lt; ": ";
       forall(j in 1..n) {
         if (a[i,j])
-          cout << j << " ";
+          cout &lt;&lt; j &lt;&lt; " ";
       }
-      cout << endl;
+      cout &lt;&lt; endl;
     }
   }
-  cout << endl;
+  cout &lt;&lt; endl;
 
 
 }
 
-cout << "\nnum_solutions: " << num_solutions << endl;
+cout &lt;&lt; "\nnum_solutions: " &lt;&lt; num_solutions &lt;&lt; endl;
     
 int t1 = System.getCPUTime();
-cout << "time:      " << (t1-t0) << endl;
-cout << "#choices = " << m.getNChoice() << endl;
-cout << "#fail    = " << m.getNFail() << endl;
-cout << "#propag  = " << m.getNPropag() << endl;
+cout &lt;&lt; "time:      " &lt;&lt; (t1-t0) &lt;&lt; endl;
+cout &lt;&lt; "#choices = " &lt;&lt; m.getNChoice() &lt;&lt; endl;
+cout &lt;&lt; "#fail    = " &lt;&lt; m.getNFail() &lt;&lt; endl;
+cout &lt;&lt; "#propag  = " &lt;&lt; m.getNPropag() &lt;&lt; endl;
 
 
 //
 // Partition the sets (binary matrix representation).
 //
-function void partition_sets(var<CP>{bool} [,] x) {
-  Solver<CP> m = x[1,1].getSolver();
+function void partition_sets(var&lt;CP&gt;{bool} [,] x) {
+  Solver&lt;CP&gt; m = x[1,1].getSolver();
   range R1 = x.getRange(0);
   range R2 = x.getRange(1);
 
   forall(i in R1, j in R1 : i != j)
-      m.post(sum(k in R2) (x[i,k] && x[j,k]) == 0);
+      m.post(sum(k in R2) (x[i,k] &amp;&amp; x[j,k]) == 0);
 
   // ensure that all integers is in (exactly) one partition
   m.post((sum(i in R1, j in R2) x[i,j]) == R2.getSize());
@@ -217,6 +217,7 @@ function void partition_sets(var<CP>{bool} [,] x) {
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-50/js/shBrushEssence.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-50/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-50/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-50/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushErlang.js'],

@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-50/Problems/prob012/models/nonogram_automaton.co">Download</a>
-<pre >/*
+<pre class ='brush: comet'>/*
 
   Nonogram (Painting by numbers)  in Comet
   
@@ -232,17 +232,17 @@ include "nonogram_p200";
 // include "nonogram_soccer_player";
 
 
-Solver<CP> m();
+Solver&lt;CP&gt; m();
 
 //
 // The grid
 //
-var<CP>{int} board[1..rows, 1..cols](m, 0..1);
+var&lt;CP&gt;{int} board[1..rows, 1..cols](m, 0..1);
 
 
 Integer num_solutions(0);
-// explore<m> {
-exploreall<m> {
+// explore&lt;m&gt; {
+exploreall&lt;m&gt; {
 
   forall(i in 1..rows) {
     check_rule(m, all(j in 1..row_rule_len) row_rules[i,j], all(j in 1..cols) board[i,j]);
@@ -257,25 +257,25 @@ exploreall<m> {
   // Slightly different labelings depending on the size of the problem.
   // We start with the smaller dimension.
   // See above for credit to Pascal Van Hentenryck.
-  if (rows * row_rule_len < cols * col_rule_len ) {
+  if (rows * row_rule_len &lt; cols * col_rule_len ) {
 
     forall(i in 1..rows, j in 1..cols: !board[i,j].bound()) {
-      tryall<m>(v in 0..1) by (-v)
+      tryall&lt;m&gt;(v in 0..1) by (-v)
         m.label(board[i,j], v);
       onFailure m.diff(board[i,j], v);
     }
   } else {
 
     forall(j in 1..cols, i in 1..rows: !board[i,j].bound()) {
-      tryall<m>(v in 0..1) by (-v)
+      tryall&lt;m&gt;(v in 0..1) by (-v)
         m.label(board[i,j], v);
       onFailure m.diff(board[i,j], v);
     }
   }
 
   num_solutions++;
-  cout << "#fails  = " << m.getNFail() << endl;
-  cout << "#propag  = " << m.getNPropag() << endl;
+  cout &lt;&lt; "#fails  = " &lt;&lt; m.getNFail() &lt;&lt; endl;
+  cout &lt;&lt; "#propag  = " &lt;&lt; m.getNPropag() &lt;&lt; endl;
       
   forall(i in 1..rows) {
     forall(j in 1..cols) {
@@ -283,40 +283,40 @@ exploreall<m> {
       if (board[i,j] == 1) {
         s = "#";
       }
-      cout << s << "";
+      cout &lt;&lt; s &lt;&lt; "";
     }
-    cout << endl;
+    cout &lt;&lt; endl;
   }
-  cout << endl;
-  cout << flush;
+  cout &lt;&lt; endl;
+  cout &lt;&lt; flush;
 
 }
 
 
-cout << "\nnum_solutions: " << num_solutions << endl;
+cout &lt;&lt; "\nnum_solutions: " &lt;&lt; num_solutions &lt;&lt; endl;
     
 int t1 = System.getCPUTime();
-cout << "time:      " << (t1-t0) << endl;
-cout << "#choices = " << m.getNChoice() << endl;
-cout << "#fail    = " << m.getNFail() << endl;
-cout << "#propag  = " << m.getNPropag() << endl;
+cout &lt;&lt; "time:      " &lt;&lt; (t1-t0) &lt;&lt; endl;
+cout &lt;&lt; "#choices = " &lt;&lt; m.getNChoice() &lt;&lt; endl;
+cout &lt;&lt; "#fail    = " &lt;&lt; m.getNFail() &lt;&lt; endl;
+cout &lt;&lt; "#propag  = " &lt;&lt; m.getNPropag() &lt;&lt; endl;
 
 //
 // check_rule: The main function. 
 //
-function void check_rule(Solver<CP> m, int[] rules, var<CP>{int}[] y) {
+function void check_rule(Solver&lt;CP&gt; m, int[] rules, var&lt;CP&gt;{int}[] y) {
 
-  int r_len = sum(i in 1..rules.getSize()) (rules[i] > 0);
+  int r_len = sum(i in 1..rules.getSize()) (rules[i] &gt; 0);
   int rules_tmp[1..r_len];
   int c = 1;
   forall(i in 1..rules.getSize()) {
-    if (rules[i] > 0) {
+    if (rules[i] &gt; 0) {
       rules_tmp[c] = rules[i];
       c++;
     }
   }
 
-  Automaton<CP> aut =  make_automaton(rules_tmp);
+  Automaton&lt;CP&gt; aut =  make_automaton(rules_tmp);
   m.post(regular(y, aut));
 
 } // end check_rule
@@ -325,12 +325,12 @@ function void check_rule(Solver<CP> m, int[] rules, var<CP>{int}[] y) {
 //
 // Build the transition matrix for a nonogram pattern.
 //
-function Automaton<CP> make_automaton(int[] pattern) {
+function Automaton&lt;CP&gt; make_automaton(int[] pattern) {
 
   int p_len = pattern.getSize();
   int num_states = p_len + sum(i in 1..p_len) pattern[i];
 
-  Automaton<CP> aut(1..num_states+1, 0..1, 1, {num_states, num_states+1});
+  Automaton&lt;CP&gt; aut(1..num_states+1, 0..1, 1, {num_states, num_states+1});
 
   // convert pattern to a 0/1 pattern for easy handling of
   // the states
@@ -341,7 +341,7 @@ function Automaton<CP> make_automaton(int[] pattern) {
     forall(j in 1..pattern[i]) {
       tmp[++c] = 1;      
     }
-    if (c < num_states) {
+    if (c &lt; num_states) {
         tmp[++c] = 0;
     }
   }
@@ -352,7 +352,7 @@ function Automaton<CP> make_automaton(int[] pattern) {
       aut.addTransition(i,i,0);
       aut.addTransition(i,i+1,1);
     } else {
-      if (i < num_states) {
+      if (i &lt; num_states) {
         if (tmp[i+1] == 1) {
           aut.addTransition(i,i+1,1);
         } else {
@@ -383,6 +383,7 @@ function Automaton<CP> make_automaton(int[] pattern) {
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-50/js/shBrushEssence.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-50/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-50/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-50/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushErlang.js'],

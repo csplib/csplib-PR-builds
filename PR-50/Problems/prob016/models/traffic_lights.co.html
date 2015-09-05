@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-50/Problems/prob016/models/traffic_lights.co">Download</a>
-<pre >/*
+<pre class ='brush: comet'>/*
 
   Traffic lights problem in Comet.
 
@@ -100,7 +100,7 @@
   for the pedestrians and can be represented by the variables P1 to P4 with domains {r,g}.
   
   The constraints on these variables can be modelled by quaternary constraints on 
-  (Vi, Pi, Vj, Pj ) for 1<=i<=4, j=(1+i)mod 4 which allow just the tuples 
+  (Vi, Pi, Vj, Pj ) for 1&lt;=i&lt;=4, j=(1+i)mod 4 which allow just the tuples 
   {(r,r,g,g), (ry,r,y,r), (g,g,r,r), (y,r,ry,r)}.
  
   It would be interesting to consider other types of junction (e.g. five roads 
@@ -149,17 +149,17 @@ int allowed[1..n, 1..n] =
    ];
 
 
-Solver<CP> m();
-var<CP>{int} V[1..n](m, 1..n);
-var<CP>{int} P[1..n](m, 1..n);
+Solver&lt;CP&gt; m();
+var&lt;CP&gt;{int} V[1..n](m, 1..n);
+var&lt;CP&gt;{int} P[1..n](m, 1..n);
 
 Integer num_solutions(0);
-// explore<m> {
-exploreall<m> {
+// explore&lt;m&gt; {
+exploreall&lt;m&gt; {
 
   // TODO: * using table/FunctionTable?
   forall(i in 1..n, j in 1..n : j == (1+i) % n) {
-    var<CP>{int} a(m, 1..n);
+    var&lt;CP&gt;{int} a(m, 1..n);
     m.post(V[i] == allowed[a,1]);
     m.post(P[i] == allowed[a,2]);
     m.post(V[j] == allowed[a,3]);
@@ -173,18 +173,18 @@ exploreall<m> {
   num_solutions := num_solutions + 1;
 
   forall(i in 1..4)
-    cout << V[i] << " " << P[i] << " ";
-  cout << endl;
+    cout &lt;&lt; V[i] &lt;&lt; " " &lt;&lt; P[i] &lt;&lt; " ";
+  cout &lt;&lt; endl;
 }
 
 
-cout << "\nnum_solutions: " << num_solutions << endl;
+cout &lt;&lt; "\nnum_solutions: " &lt;&lt; num_solutions &lt;&lt; endl;
     
 int t1 = System.getCPUTime();
-cout << "time:      " << (t1-t0) << endl;
-cout << "#choices = " << m.getNChoice() << endl;
-cout << "#fail    = " << m.getNFail() << endl;
-cout << "#propag  = " << m.getNPropag() << endl;
+cout &lt;&lt; "time:      " &lt;&lt; (t1-t0) &lt;&lt; endl;
+cout &lt;&lt; "#choices = " &lt;&lt; m.getNChoice() &lt;&lt; endl;
+cout &lt;&lt; "#fail    = " &lt;&lt; m.getNFail() &lt;&lt; endl;
+cout &lt;&lt; "#propag  = " &lt;&lt; m.getNPropag() &lt;&lt; endl;
 
 
 </pre>
@@ -200,6 +200,7 @@ cout << "#propag  = " << m.getNPropag() << endl;
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-50/js/shBrushEssence.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-50/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-50/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-50/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-50/syntax_highlighter/shBrushErlang.js'],
