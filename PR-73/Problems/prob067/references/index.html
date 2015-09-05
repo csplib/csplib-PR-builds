@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 	<meta name="author" content="">
 	<!-- <link rel="shortcut icon" href="../../assets/ico/favicon.png"> -->
 
-	<title>011: ACC Basketball Schedule</title>
+	<title>067: Quasigroup Completion</title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="/csplib-PR-builds/PR-73/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -36,6 +37,32 @@
 	</script>
 
 
+	<style>
+	p.highlight{
+		border: 1px solid;
+		padding-left: 5px;
+		padding-right: 1px;
+	}
+	</style>
+
+	<script type="text/javascript">
+	$( document ).ready(function() {
+		ref_id= window.location.hash.substring(1);
+		if (ref_id){
+		  $('p#'+ ref_id).addClass('highlight');
+	 	}
+
+		$( "a.bibref" ).on("click", function() {
+			ref_id=$(this).attr("data-bibfragment")
+			$( "p.bib" ).removeClass('highlight')
+		 	$('p#'+ ref_id).addClass('highlight');
+		});
+
+	});
+
+	</script>
+
+
 </head>
 
 <body>
@@ -44,15 +71,15 @@
     	  <li><a href="/csplib-PR-builds/PR-73/">CSPLib</a></li>
 
   <li><a href="/csplib-PR-builds/PR-73/Problems">Problems</a></li>
-  <li><a href="/csplib-PR-builds/PR-73/Problems/prob011">prob011</a></li>
+  <li><a href="/csplib-PR-builds/PR-73/Problems/prob067">prob067</a></li>
 
-  <li><a href="/csplib-PR-builds/PR-73/Problems/prob011/results">Results</a></li>
+  <li><a href="/csplib-PR-builds/PR-73/Problems/prob067/references">References</a></li>
 	</ol>
 
 	<div class="container">
 
 		<div class="page-header">
-			<h1>011: ACC Basketball Schedule</h1>
+			<h1>067: Quasigroup Completion</h1>
 
 
 <!-- macro to Not made a link if on the page the link links to -->
@@ -60,19 +87,19 @@
 
 <nav id="navigation">
 <ul>
-   	<li><a href="/csplib-PR-builds/PR-73/Problems/prob011/">Specification</a></li>
+   	<li><a href="/csplib-PR-builds/PR-73/Problems/prob067/">Specification</a></li>
 
-   	<li><a class='no-files' href="/csplib-PR-builds/PR-73/Problems/prob011/data">Data files</a></li>
+   	<li><a href="/csplib-PR-builds/PR-73/Problems/prob067/data">Data files</a></li>
 
-  	<li><p>Results</p></li>
+   	<li><a href="/csplib-PR-builds/PR-73/Problems/prob067/results">Results</a></li>
 
-   	<li><a href="/csplib-PR-builds/PR-73/Problems/prob011/references">References</a></li>
+  	<li><p>References</p></li>
 
-   	<li><a href="/csplib-PR-builds/PR-73/Problems/prob011/models">Models</a></li>
+   	<li><a href="/csplib-PR-builds/PR-73/Problems/prob067/models">Models</a></li>
 
-   	<li><a href="/csplib-PR-builds/PR-73/Problems/prob011/cite">Cite</a></li>
+   	<li><a href="/csplib-PR-builds/PR-73/Problems/prob067/cite">Cite</a></li>
 
-    <li style="float:right"><a href="https://github.com/csplib/csplib/blob/master/Problems/prob011/results">Edit Page</a></li>
+    <li style="float:right"><a href="https://github.com/csplib/csplib/blob/master/Problems/prob067/references">Edit Page</a></li>
 </ul>
 </nav>
 
@@ -81,10 +108,49 @@
 		</div>
 
 
+<p>
+	<a href="/csplib-PR-builds/PR-73/Problems/prob067/references/prob067-refs.bib">Download bibtex</a>
+</p>
 
-	<p>Using explicit enumeration and integer programming and explicit enumeration, Nemhauser and Trick report runtimes of the order of 24 hours.</p>
-	<p>Walser reports competitive results using a linear 0-1 formulation and local search methods in his PhD thesis (<a href="http://ps.uni-sb.de/Papers/abstacts/WalserThesis.html">abstract</a>, <a href="http://www.ps.uni-sb.de/~walser/WalserThesis.ps">postscript</a>, <a href="http://www.ps.uni-sb.de/~walser/WalserThesis.ps.gz">compressed postscript</a>).</p>
-	<p>Henz reports runtimes of less than 1 minute, using the finite-domain constraint programming tool <a href="http://www.comp.nus.edu.sg/~henz/projects/FriarTuck">Friar Tuck</a>.</p>
+
+
+<style>
+    .venue { font-style: italic; }
+    .title { font-weight: bold; }
+    .bibkey{
+        text-align:center;
+        font-size: 70%;
+    }
+</style>
+<p id="PesantQZ12" class='bib'>
+    <span class="bibkey">
+        [PesantQZ12]
+    </span>
+    <br>
+    <span class="authors">
+        Gilles Pesant, Claude-Guy Quimper, and Alessandro Zanarini
+    </span>
+
+    <br>
+
+    <span class="title">
+        <a href="http://dx.doi.org/10.1613/jair.3463">Counting-Based Search: Branching Heuristics for Constraint Satisfaction Problems</a>
+    </span>
+
+    <br>
+
+    <span class="venuetype"></span>
+    <span class="venue">J. Artif. Intell. Res. (JAIR)</span>, 
+    <span class="date">
+        
+        2012
+    </span>
+
+    <span class="links">
+    </span>
+
+</p>
+
 
 
 
