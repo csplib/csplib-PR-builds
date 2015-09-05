@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob044/models/steiner.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Steiner triplets in MiniZinc.
 % 
 % http://www.probp.com/examples/clpset/steiner.pl 
@@ -125,8 +125,8 @@ constraint
       card(Sets[i]) = 3
    )
    /\ 
-   forall(i,j in index_set(Sets) where i < j) (
-      card( Sets[i] intersect Sets[j]) <= 1
+   forall(i,j in index_set(Sets) where i &lt; j) (
+      card( Sets[i] intersect Sets[j]) &lt;= 1
    )
    /\ % symmetry breaking
    decreasing(Sets)
@@ -151,6 +151,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

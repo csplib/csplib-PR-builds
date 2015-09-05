@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob018/models/water_buckets_regular.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % MiniZinc model for the water buckets problem
 %
 % Model created by Hakan Kjellerstrand, hakank@gmail.com
@@ -94,13 +94,13 @@
 %
 % Solution should be
 %   x: [1, 9, 10, 11, 12, 13, 14, 15]
-%   8,0,0 -> 3,5,0
-%   3,5,0 -> 3,2,3
-%   3,2,3 -> 6,2,0
-%   6,2,0 -> 6,0,2
-%   6,0,2 -> 1,5,2
-%   1,5,2 -> 1,4,3
-%   1,4,3 -> 4,4,0
+%   8,0,0 -&gt; 3,5,0
+%   3,5,0 -&gt; 3,2,3
+%   3,2,3 -&gt; 6,2,0
+%   6,2,0 -&gt; 6,0,2
+%   6,0,2 -&gt; 1,5,2
+%   1,5,2 -&gt; 1,4,3
+%   1,4,3 -&gt; 4,4,0
 % 
 include "globals.mzn";
 
@@ -170,16 +170,16 @@ output
 ["cost: " ++ show(cost) ++ "\n"] ++
 [show(initial_state) ++ " "] ++
 [
-  if fix(x[i]) < input_max then show(x[i]) ++ " " else " " endif
-  | i in 1..input_max where fix(x[i]) < input_max
+  if fix(x[i]) &lt; input_max then show(x[i]) ++ " " else " " endif
+  | i in 1..input_max where fix(x[i]) &lt; input_max
 ] ++ 
 [show(input_max) ++ "\n"] ++ 
 ["\n\n"] ++
 
 [show(nodes[initial_state]) ++ "\n"] ++
 [
-  if fix(x[i]) < input_max then show(nodes[fix(x[i])]) ++ "\n" else " " endif
-  | i in 1..input_max where fix(x[i]) < input_max
+  if fix(x[i]) &lt; input_max then show(nodes[fix(x[i])]) ++ "\n" else " " endif
+  | i in 1..input_max where fix(x[i]) &lt; input_max
 ] ++ 
 [show(nodes[input_max]) ++ "\n"] ++ 
 ["\n"];
@@ -197,6 +197,7 @@ output
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

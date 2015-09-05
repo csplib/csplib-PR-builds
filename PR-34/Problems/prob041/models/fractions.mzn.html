@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob041/models/fractions.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Fractions problem in MiniZinc.
 %
 % Prolog benchmark problem (BProlog)
@@ -133,11 +133,11 @@ constraint
    D3 = 10*H+I /\
    A*D2*D3 + D*D1*D3 + G*D1*D2 = D1*D2*D3 /\
    % break the symmetry
-   A*D2 >= D*D1 /\
-   D*D3 >= G*D2 /\
+   A*D2 &gt;= D*D1 /\
+   D*D3 &gt;= G*D2 /\
    %redundant constraints
-   3*A >= D1 /\
-   3*G <= D2
+   3*A &gt;= D1 /\
+   3*G &lt;= D2
 
 ;
 
@@ -157,6 +157,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

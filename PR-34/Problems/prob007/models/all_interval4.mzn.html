@@ -85,11 +85,11 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob007/models/all_interval4.mzn">Download</a>
-<pre >%
+<pre class ='brush: minizinc'>%
 % All interval problem in MiniZinc.
 % 
 % Different approaches inspired by
-% http://www.dis.uniroma1.it/~tmancini/index.php?currItem=research.publications.webappendices.csplib2x.problemDetails&problemid=007
+% http://www.dis.uniroma1.it/~tmancini/index.php?currItem=research.publications.webappendices.csplib2x.problemDetails&amp;problemid=007
 %
 % Also see
 %   http://www.hakank.org/minizinc/all_interval1.mzn
@@ -124,7 +124,7 @@ constraint
 
   % C2: Differences between neighbouring notes are all different
   % GCAD: Exploitation of alldifferent() global constraint
-  % alldifferent(all (i in classes: i <> n-1) abs(series[i+1] - series[i]));
+  % alldifferent(all (i in classes: i &lt;&gt; n-1) abs(series[i+1] - series[i]));
   all_different( 
          [ abs(series[i+1] - series[i]) | i in classes where i != n-1]
   )
@@ -146,6 +146,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

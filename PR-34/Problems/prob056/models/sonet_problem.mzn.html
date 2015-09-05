@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob056/models/sonet_problem.mzn">Download</a>
-<pre >%
+<pre class ='brush: minizinc'>%
 % The SONET problem in MiniZinc.
 % 
 % Translation of the ESSENCE' model in the Minion Translator examples:
@@ -155,16 +155,16 @@ solve minimize z;
 
 
 constraint
-%   z <= 7 % for solve satisfy
+%   z &lt;= 7 % for solve satisfy
 %   /\
 
    % original comment:
    % if there is a demand between 2 nodes, then there has to exist 
    % a ring, on which they are both installed
-   forall(client1,client2 in 1..n where client1 < client2) (
-      (demand[client1,client2] = 1) ->
+   forall(client1,client2 in 1..n where client1 &lt; client2) (
+      (demand[client1,client2] = 1) -&gt;
            exists(ring in 1..r) (
-                 rings[ring,client1] + rings[ring, client2] >= 2
+                 rings[ring,client1] + rings[ring, client2] &gt;= 2
            )
    )   
    /\
@@ -173,7 +173,7 @@ constraint
    forall(ring in 1..r) (
         sum(client in 1..n) (
               rings[ring, client]
-              ) <= capacity_nodes[ring] 
+              ) &lt;= capacity_nodes[ring] 
    )
 ;
 
@@ -219,6 +219,7 @@ output
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

@@ -85,11 +85,11 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob007/models/all_interval2.mzn">Download</a>
-<pre >%
+<pre class ='brush: minizinc'>%
 % All interval problem in MiniZinc.
 % 
 % Different approaches inspired by
-% http://www.dis.uniroma1.it/~tmancini/index.php?currItem=research.publications.webappendices.csplib2x.problemDetails&problemid=007
+% http://www.dis.uniroma1.it/~tmancini/index.php?currItem=research.publications.webappendices.csplib2x.problemDetails&amp;problemid=007
 %
 % Also see
 %   http://www.hakank.org/minizinc/all_interval1.mzn
@@ -121,13 +121,13 @@ constraint
    )
    /\
    % C2: Differences between neighbouring notes are all different
-   forall(i,j in classes where j < n-1 /\ i < n-1 /\ i!=j) (
+   forall(i,j in classes where j &lt; n-1 /\ i &lt; n-1 /\ i!=j) (
      abs(series[i+1] - series[i]) != abs(series[j+1] - series[j])
    )
    /\
    % SBSO: Symmetry-breaking by selective ordering
    % The first note is less than last one
-   series[0] < series[n-1]
+   series[0] &lt; series[n-1]
 ;
 
 
@@ -146,6 +146,7 @@ output
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

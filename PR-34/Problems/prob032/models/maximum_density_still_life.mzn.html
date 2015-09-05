@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob032/models/maximum_density_still_life.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Maximum density still life in MiniZinc.
 % 
 % 
@@ -95,7 +95,7 @@
 % This model was inspired by the OPL model from
 % Toni Mancini, Davide Micaletto, Fabio Patrizi, Marco Cadoli: 
 % "Evaluating ASP and commercial solvers on the CSPLib"
-% http://www.dis.uniroma1.it/~tmancini/index.php?problemid=032&solver=OPL&spec=BASE&currItem=research.publications.webappendices.csplib2x.problemDetails#listing
+% http://www.dis.uniroma1.it/~tmancini/index.php?problemid=032&amp;solver=OPL&amp;spec=BASE&amp;currItem=research.publications.webappendices.csplib2x.problemDetails#listing
 %
 %
 % Compare with the Comet model:
@@ -160,16 +160,16 @@ constraint
           grid[r,c-1] + grid[r,c+1] + 
           grid[r+1,c-1] + grid[r+1,c] + grid[r+1,c+1]
           ) = 3 
-       ) -> (grid[r,c] = 1)
+       ) -&gt; (grid[r,c] = 1)
     )
     /\    
 
     % C3: Each live cell must have 2 or 3 live neighbors (cells of the first/last 
     % row/column may be ignored by this constraint)
     (
-       (grid[r,c] = 1) -> 
+       (grid[r,c] = 1) -&gt; 
                       (
-                        2 <= 
+                        2 &lt;= 
                         ( grid[r-1,c-1] + grid[r-1,c] + grid[r-1,c+1] +
                           grid[r,c-1] + grid[r,c+1] +
                           grid[r+1,c-1] + grid[r+1,c] + grid[r+1,c+1] 
@@ -178,7 +178,7 @@ constraint
                         ( grid[r-1,c-1] + grid[r-1,c] + grid[r-1,c+1] +
                           grid[r,c-1] + grid[r,c+1] +
                           grid[r+1,c-1] + grid[r+1,c] + grid[r+1,c+1] 
-                          ) <= 3
+                          ) &lt;= 3
                       )
     )
   )
@@ -191,8 +191,8 @@ constraint
   % must be dead too 
   % - if the NE-corner cell is dead, the SW-corner cell must be dead too
   % 
-  grid[2,2] >= grid[size+1,size+1] /\
-  grid[2,size+1] >= grid[size+1,2]
+  grid[2,2] &gt;= grid[size+1,size+1] /\
+  grid[2,size+1] &gt;= grid[size+1,2]
 ;
 
 
@@ -214,6 +214,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

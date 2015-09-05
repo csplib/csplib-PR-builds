@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob021/models/crossfigure.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Crossfigure problem in MiniZinc.
 %
 % CSPLib problem 21
@@ -237,7 +237,7 @@ predicate down(array[int,int] of var D: Matrix, var D: Down, int: Len, int: Row,
 
 
 %
-% converts a number <-> array
+% converts a number &lt;-&gt; array
 %
 predicate toNum10(array[int] of var D: a, var D: n) =
           let { int: len = length(a) }
@@ -245,7 +245,7 @@ predicate toNum10(array[int] of var D: a, var D: n) =
           n = sum(i in 1..len) (
             ceil(pow(10.0, int2float(len-i))) * a[i]
           )
-          /\ forall(i in 1..len) (a[i] >= 0)
+          /\ forall(i in 1..len) (a[i] &gt;= 0)
 ;
 
 
@@ -264,7 +264,7 @@ predicate square(var D: x) =
 %
 predicate is_prime(var int: x) =
    forall(i in 2..ceil(sqrt(9999.0))) ( 
-        (i < x) -> (x mod i > 0)
+        (i &lt; x) -&gt; (x mod i &gt; 0)
    )
 ;
 
@@ -451,6 +451,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

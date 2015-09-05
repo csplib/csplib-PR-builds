@@ -85,14 +85,14 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob019/models/magic.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Magic square integer programming version in MiniZinc.
 % 
 % From GLPK:s example magic.mod
 % """
 % MAGIC, Magic Square
 %
-% Written in GNU MathProg by Andrew Makhorin <mao@mai2.rcnet.ru>
+% Written in GNU MathProg by Andrew Makhorin &lt;mao@mai2.rcnet.ru&gt;
 %
 % In recreational mathematics, a magic square of order n is an
 % arrangement of n^2 numbers, usually distinct integers, in a square,
@@ -134,9 +134,9 @@ solve :: int_search(
     satisfy;
 
 constraint 
-  s >= 0 
+  s &gt;= 0 
   /\
-  s <= n*n*n
+  s &lt;= n*n*n
   /\
   % each cell must be assigned exactly one integer
   forall(i in 1..n, j in 1..n) (
@@ -205,6 +205,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

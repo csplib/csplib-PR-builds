@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob054/models/queens3.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % n queens problem in MiniZinc.
 % 
 % This MiniZinc model was created by Hakan Kjellerstrand, hakank@gmail.com
@@ -111,7 +111,7 @@ solve :: int_search(
 constraint all_different(queens);
 
 constraint
-    forall(i, j in 1..n where i < j) (
+    forall(i, j in 1..n where i &lt; j) (
          queens[i] != queens[j] /\
          queens[i] + i != queens[j] + j /\
          queens[i] - i != queens[j] - j
@@ -143,6 +143,7 @@ n = 8;
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

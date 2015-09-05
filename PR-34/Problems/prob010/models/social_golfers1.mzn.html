@@ -85,12 +85,12 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob010/models/social_golfers1.mzn">Download</a>
-<pre >%
+<pre class ='brush: minizinc'>%
 % Social golfer in Minizinc.
 % 
 % Translated from OPL code from
 %
-% http://www.dis.uniroma1.it/~tmancini/index.php?currItem=research.publications.webappendices.csplib2x.problemDetails&problemid=010
+% http://www.dis.uniroma1.it/~tmancini/index.php?currItem=research.publications.webappendices.csplib2x.problemDetails&amp;problemid=010
 %
 % """
 % Problem description
@@ -144,7 +144,7 @@ constraint
    /\
    % C2: Each pair of players only meets at most once
    forall (g1, g2 in Golfer, w1, w2 in Week  where g1 != g2 /\ w1 != w2) (
-     (bool2int(assign[g1,w1] = assign[g2,w1]) + bool2int(assign[g1,w2] = assign[g2,w2])) <= 1
+     (bool2int(assign[g1,w1] = assign[g2,w1]) + bool2int(assign[g1,w2] = assign[g2,w2])) &lt;= 1
    )
   /\
   % SBSA: Symmetry-breaking by selective assignment
@@ -155,7 +155,7 @@ constraint
     assign[g,1]=((g-1) div groupSize) + 1 % 
   )
   /\
-  forall(g in Golfer where g <= groupSize)(
+  forall(g in Golfer where g &lt;= groupSize)(
     assign[g,2]=g
   )
 
@@ -181,6 +181,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob024/models/langford2.mzn">Download</a>
-<pre >% Langford's number problem in MiniZinc.
+<pre class ='brush: minizinc'>% Langford's number problem in MiniZinc.
 %
 % This model is based on the ESSENCE' model in the Minion Translator examples:
 %
@@ -137,7 +137,7 @@ constraint
   /\   
   all_different(position)
   /\ % symmetry breaking
-  solution[1] < solution[2*k]
+  solution[1] &lt; solution[2*k]
 ;
 
 
@@ -167,6 +167,7 @@ k = 4;
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

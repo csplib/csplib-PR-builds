@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob007/models/all_interval.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % All interval problem in MiniZinc
 % 
 % CSPLib problem number 7
@@ -140,9 +140,9 @@ constraint
       diffs[k] = abs(x[k+1] - x[k])
   )
   /\ % symmetry breaking
-  x[1] < x[n-1]
+  x[1] &lt; x[n-1]
   /\
-  diffs[1] < diffs[2]
+  diffs[1] &lt; diffs[2]
 ;
 
 
@@ -162,6 +162,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

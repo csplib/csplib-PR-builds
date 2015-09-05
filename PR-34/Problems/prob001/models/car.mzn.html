@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob001/models/car.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Car sequencing in MiniZinc.
 % 
 % This is based on the OPL3 model car.mod.
@@ -131,7 +131,7 @@ constraint
   )
   /\
   forall(o in Options, s in 1..nbSlots - capacity[o,2] + 1) (
-    sum(j in s..s + capacity[o,2]- 1) (setup[o,j]) <= capacity[o,1]
+    sum(j in s..s + capacity[o,2]- 1) (setup[o,j]) &lt;= capacity[o,1]
   )
   /\
   forall(o in Options, s in Slots ) (
@@ -139,7 +139,7 @@ constraint
   )
   /\
   forall(o in Options, i in 1..optionDemand[o]) (
-    sum(s in 1..(nbSlots - i * capacity[o,2])) (setup[o,s]) >=
+    sum(s in 1..(nbSlots - i * capacity[o,2])) (setup[o,s]) &gt;=
            (optionDemand[o] - i * capacity[o,1])
   )
 ;
@@ -199,6 +199,7 @@ capacity =
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

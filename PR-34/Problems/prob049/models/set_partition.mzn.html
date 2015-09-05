@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob049/models/set_partition.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Set partition problem in Minizinc.
 %
 % Problem formulation from
@@ -94,12 +94,12 @@
 %  This is a partition problem.
 %  Given the set S = {1, 2, ..., n}, 
 %  it consists in finding two sets A and B such that:
-%  <ul>
-%  <li>A U B = S,</li>
-%  <li>|A| = |B|,</li>
-%  <li>sum(A) = sum(B),</li>
-%  <li>sum_squares(A) = sum_squares(B).</li>
-%  </ul>
+%  &lt;ul&gt;
+%  &lt;li&gt;A U B = S,&lt;/li&gt;
+%  &lt;li&gt;|A| = |B|,&lt;/li&gt;
+%  &lt;li&gt;sum(A) = sum(B),&lt;/li&gt;
+%  &lt;li&gt;sum_squares(A) = sum_squares(B).&lt;/li&gt;
+%  &lt;/ul&gt;
 % """
 %
 % Model created by Hakan Kjellerstrand, hakank@gmail.com
@@ -154,7 +154,7 @@ constraint
    )
    /\
    forall(i in 2..num_sets) (
-     card(a[i]) > 0 /\ % this is needed by eclipse
+     card(a[i]) &gt; 0 /\ % this is needed by eclipse
      card(a[i]) = card(a[i-1]) /\
      sums[i] = sums[i-1] 
      /\ sum_squared[i] = sum_squared[i-1] 
@@ -189,6 +189,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

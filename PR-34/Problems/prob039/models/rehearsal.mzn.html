@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob039/models/rehearsal.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Scheduling a Rehearsal in MiniZinc.
 % 
 % From Barbara M. Smith: 
@@ -172,7 +172,7 @@
 % Note that all waiting times are the same for 
 % all sequences, i.e. player 1 always wait 3 units, etc.
 %
-% With symmetry breaking rule that order[1] < order[num_pieces] 
+% With symmetry breaking rule that order[1] &lt; order[num_pieces] 
 % there are 4 solutions where piece 2 and 7 can change place and 
 % 5 and 6 can change place.
 % 
@@ -224,22 +224,22 @@ constraint
      % or ends with 0.
      % This means that we collect the rehearsals with many 0 at the ends
      %
-     p_from[p] < p_to[p]
+     p_from[p] &lt; p_to[p]
      /\
      % skipping rehearsal at start (don't come yet)
      forall(i in 1..num_pieces) (
-        i < p_from[p] -> (rehearsal[p, rehearsal_order[i]] = 0)
+        i &lt; p_from[p] -&gt; (rehearsal[p, rehearsal_order[i]] = 0)
      )
      /\
      % skipping rehearsal at end (go home after last rehearsal)
      forall(i in 1..num_pieces) (
-        i > p_to[p] -> (rehearsal[p, rehearsal_order[i]] = 0)
+        i &gt; p_to[p] -&gt; (rehearsal[p, rehearsal_order[i]] = 0)
      )
      /\ % and now: count the waiting time for from..to
      waiting_time[p] = 
          sum(i in 1..num_pieces) (
               duration[rehearsal_order[i]] * bool2int(
-                                             i >= p_from[p] /\ i <= p_to[p] 
+                                             i &gt;= p_from[p] /\ i &lt;= p_to[p] 
                                              /\
                                              rehearsal[p,rehearsal_order[i]] = 0
                                 )
@@ -271,7 +271,7 @@ constraint
   )
 
   /\ % symmetry breaking
-  rehearsal_order[1] < rehearsal_order[num_pieces]
+  rehearsal_order[1] &lt; rehearsal_order[num_pieces]
 
   % for all solutions
   % /\ total_waiting_time = 17
@@ -337,6 +337,7 @@ output[
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob022/models/bus_scheduling_csplib.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Bus driver scheduling problem (prob022 in CSPLib) in MiniZinc.
 % 
 % http://www.cs.st-andrews.ac.uk/~ianm/CSPLib/prob/prob022/index.html
@@ -190,7 +190,7 @@ constraint
        sum(i in 1..num_shifts) (x[i]*bool2int(j in shifts[i])) = 1
    )
    /\
-   tot_shifts >= min_num_shifts
+   tot_shifts &gt;= min_num_shifts
 
    % /\ % for solve satisfy (t1)
    % tot_shifts = 7
@@ -223,6 +223,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

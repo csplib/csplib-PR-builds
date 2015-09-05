@@ -85,11 +85,11 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob007/models/all_interval1.mzn">Download</a>
-<pre >%
+<pre class ='brush: minizinc'>%
 % All interval problem in MiniZinc.
 % 
 % Different approaches inspired by
-% http://www.dis.uniroma1.it/~tmancini/index.php?currItem=research.publications.webappendices.csplib2x.problemDetails&problemid=007
+% http://www.dis.uniroma1.it/~tmancini/index.php?currItem=research.publications.webappendices.csplib2x.problemDetails&amp;problemid=007
 
 % Problem description
 % Given the twelve standard pitch-classes (c, c#, d, ...), represented by numbers 0,1,...,11, this problem amounts to find a series in which each pitch-class occurs exactly once and in which the musical intervals between neighboring notes cover the full set of intervals from the minor second (1 semitone) to the major seventh (11 semitones). That is, for each of the intervals, there is a pair of neighboring pitch-classes in the series, between which this interval appears.
@@ -142,7 +142,7 @@ constraint
    )
    /\
    % C2: Differences between neighbouring notes are all different
-   forall(i,j in classes where j < n-1 /\ i < n-1 /\ i != j)  (
+   forall(i,j in classes where j &lt; n-1 /\ i &lt; n-1 /\ i != j)  (
      abs(series[i+1] - series[i]) != abs(series[j+1] - series[j])
    )
 ;
@@ -162,6 +162,7 @@ output
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob003/models/quasiGroup5NonIdempotent.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Quasigroup problem in MiniZinc.
 % 
 % This model is a translation of the ESSENCE' model quasiGroup5Idempotent.cm
@@ -137,13 +137,13 @@ constraint
      % Implied (from Colton,Miguel 01)
      forall(i in nDomain) (
        forall(j in nDomain) (
-         (quasiGroup[i,j]=i) <-> (quasiGroup[j,i]=i)
+         (quasiGroup[i,j]=i) &lt;-&gt; (quasiGroup[j,i]=i)
        )
      )
      /\
      % Symmetry-breaking constraints	
      forall(i in nDomain) (
-           quasiGroup[i,n-1] + 2 >= i
+           quasiGroup[i,n-1] + 2 &gt;= i
      )
 ;
 
@@ -164,6 +164,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

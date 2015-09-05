@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob012/models/nonogram_create_automaton2.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Nonoram solver using regular and is written in all-MiniZinc.
 % 
 % This version uses the regular constraint with the following features:
@@ -139,11 +139,11 @@ predicate make_automaton(array[int] of var int: x, array[int] of int: pattern) =
     let {
         int: n = length(pattern),
         % fix for "zero clues"
-        int: len = max(length([pattern[i] | i in 1..n where pattern[i] > 0]) + sum(pattern),1),
+        int: len = max(length([pattern[i] | i in 1..n where pattern[i] &gt; 0]) + sum(pattern),1),
         int: leading_zeros = sum(i in 1..n) (bool2int(pattern[i] = 0)),
-        set of int: zero_positions = {sum(j in 1..i) (pattern[j]+1) -leading_zeros | i in 1..n where pattern[i] > 0},
+        set of int: zero_positions = {sum(j in 1..i) (pattern[j]+1) -leading_zeros | i in 1..n where pattern[i] &gt; 0},
        array[1..2*len] of 0..len*2: states = 
-     if (length([pattern[i] | i in 1..n where pattern[i] > 0]) + sum(pattern)) = 0 then 
+     if (length([pattern[i] | i in 1..n where pattern[i] &gt; 0]) + sum(pattern)) = 0 then 
        [1,1]  % fix for "zero clues"
      else 
     [1, 2] ++
@@ -234,6 +234,7 @@ output
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],

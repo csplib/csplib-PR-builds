@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-34/Problems/prob057/models/killer_sudoku.mzn">Download</a>
-<pre >% 
+<pre class ='brush: minizinc'>% 
 % Killer Sudoku in MiniZinc.
 % 
 %   Killer sudoku in Comet.
@@ -207,7 +207,7 @@ constraint
   )
   /\ % calculate the hints
   forall(p in 1..num_p) (
-     sum(i in 1..num_hints where P[p,2*(i-1)+1] > 0) (x[  P[p, 2*(i-1)+1], P[p,2*(i-1)+2]  ]) = P[p, 2*num_hints+1]
+     sum(i in 1..num_hints where P[p,2*(i-1)+1] &gt; 0) (x[  P[p, 2*(i-1)+1], P[p,2*(i-1)+2]  ]) = P[p, 2*num_hints+1]
   )
 ;
 
@@ -228,6 +228,7 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-34/js/shBrushEssence.js'],
+    ['minizinc', '/csplib-PR-builds/PR-34/js/shBrushMiniZinc.js'],
     ['js','javascript','/csplib-PR-builds/PR-34/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-34/syntax_highlighter/shBrushErlang.js'],
