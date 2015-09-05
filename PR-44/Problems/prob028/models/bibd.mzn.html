@@ -85,9 +85,9 @@
 
 
 <a href="/csplib-PR-builds/PR-44/Problems/prob028/models/bibd.mzn">Download</a>
-<pre >% bibd.mzn
+<pre class ='brush: mzn'>% bibd.mzn
 % vim: ft=zinc ts=4 sw=4 et tw=0
-% Ralph Becket <rafe@csse.unimelb.edu.au>
+% Ralph Becket &lt;rafe@csse.unimelb.edu.au&gt;
 % Tue Oct 23 11:28:06 EST 2007
 %
 % Balanced incomplete block designs.  See the following:
@@ -125,7 +125,7 @@ constraint forall (j in cols) (sum (i in rows) (bool2int(m[i, j])) = k);
     % The dot product of every pair of distinct rows must be lambda.
     %
 constraint
-    forall (i_a, i_b in rows where i_a < i_b) (
+    forall (i_a, i_b in rows where i_a &lt; i_b) (
         sum (j in cols) (bool2int(m[i_a, j] /\ m[i_b, j])) = lambda
     );
 
@@ -147,7 +147,7 @@ solve :: bool_search([m[i, j] | i in rows, j in cols],
 
 output  ["bibd: (v = ", show(v), ", b = ", show(b), ", r = ", show(r),
         ", k = ", show(k), ", lambda = ", show(lambda), ")\n\n"] ++
-        [ ( if j > b then "\n" else show(bool2int(m[i, j])) endif )
+        [ ( if j &gt; b then "\n" else show(bool2int(m[i, j])) endif )
         | i in rows, j in 1..(b + 1)
         ];
 
@@ -166,8 +166,8 @@ output  ["bibd: (v = ", show(v), ", b = ", show(b), ", r = ", show(r),
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-44/js/shBrushEssence.js'],
-    ['minizinc', '/csplib-PR-builds/PR-44/js/shBrushMiniZinc.js'],
-    ['comet', '/csplib-PR-builds/PR-44/js/shBrushComet.js'],
+    ['minizinc','mzn', '/csplib-PR-builds/PR-44/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-44/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-44/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-44/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-44/syntax_highlighter/shBrushErlang.js'],

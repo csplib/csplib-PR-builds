@@ -85,9 +85,9 @@
 
 
 <a href="/csplib-PR-builds/PR-44/Problems/prob010/models/golfers2.mzn">Download</a>
-<pre >% golfers.mzn
+<pre class ='brush: mzn'>% golfers.mzn
 % vim: ft=zinc ts=4 sw=4 et tw=0
-% Ralph Becket <rafe@csse.unimelb.edu.au>
+% Ralph Becket &lt;rafe@csse.unimelb.edu.au&gt;
 % Mon Oct 29 13:56:25 EST 2007
 %
 % The social golfers problem, see
@@ -124,21 +124,21 @@ constraint
     % here by strictly ordering each group.
     %
 constraint
-    forall (r in rounds, g in groups, i in group where i < n_per_group) (
-        round_group_i_golfer[r, g, i] < round_group_i_golfer[r, g, i + 1]
+    forall (r in rounds, g in groups, i in group where i &lt; n_per_group) (
+        round_group_i_golfer[r, g, i] &lt; round_group_i_golfer[r, g, i + 1]
     );
 
     % Each pair can play together at most once.
     %
 constraint
-    forall (a, b in golfers where a < b) (
-        sum (r in rounds, g in groups, i, j in group where i < j) (
+    forall (a, b in golfers where a &lt; b) (
+        sum (r in rounds, g in groups, i, j in group where i &lt; j) (
             bool2int(
                 round_group_i_golfer[r, g, i] = a
             /\  round_group_i_golfer[r, g, j] = b
             )
         )
-    <=
+    &lt;=
         1
     );
 
@@ -171,8 +171,8 @@ output [
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
     ['essence','eprime','param','solution', '/csplib-PR-builds/PR-44/js/shBrushEssence.js'],
-    ['minizinc', '/csplib-PR-builds/PR-44/js/shBrushMiniZinc.js'],
-    ['comet', '/csplib-PR-builds/PR-44/js/shBrushComet.js'],
+    ['minizinc','mzn', '/csplib-PR-builds/PR-44/js/shBrushMiniZinc.js'],
+    ['comet','co', '/csplib-PR-builds/PR-44/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-44/syntax_highlighter/shBrushJScript.js'],
     ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-44/syntax_highlighter/shBrushCpp.js'],
     ['erl','hrl', '/csplib-PR-builds/PR-44/syntax_highlighter/shBrushErlang.js'],
