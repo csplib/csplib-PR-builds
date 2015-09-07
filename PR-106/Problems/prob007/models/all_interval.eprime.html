@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-106/Problems/prob007/models/all_interval.eprime">Download</a>
-<pre >$
+<pre class ='brush: essenceprime'>$
 $ All interval problem in Essence'.
 $
 $
@@ -129,8 +129,8 @@ such that
    allDiff(x),
    forall k : range2 . diffs[k] = |x[k+1]-x[k]|,
    $ symmetry breaking
-   x[1] < x[n-1],
-   diffs[1] < diffs[2]
+   x[1] &lt; x[n-1],
+   diffs[1] &lt; diffs[2]
 </pre>
 
 
@@ -142,7 +142,8 @@ such that
 <script type="text/javascript" src="/csplib-PR-builds/PR-106/syntax_highlighter/shAutoloader.js" ></script>
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
-    ['essence','eprime','param','solution', '/csplib-PR-builds/PR-106/js/shBrushEssence.js'],
+    ['essence','param','solution', '/csplib-PR-builds/PR-106/js/shBrushEssence.js'],
+    ['essenceprime', '/csplib-PR-builds/PR-106/js/shBrushEssencePrime.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-106/js/shBrushMiniZinc.js'],
     ['comet','co', '/csplib-PR-builds/PR-106/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-106/syntax_highlighter/shBrushJScript.js'],

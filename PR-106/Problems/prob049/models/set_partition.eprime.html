@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-106/Problems/prob049/models/set_partition.eprime">Download</a>
-<pre >$ 
+<pre class ='brush: essenceprime'>$ 
 $ Set partition problem in Essence'
 $
 $
@@ -95,12 +95,12 @@ $ """
 $  This is a partition problem.
 $  Given the set S = {1, 2, ..., n}, 
 $  it consists in finding two sets A and B such that:
-$  <ul>
-$  <li>A U B = S,</li>
-$  <li>|A| = |B|,</li>
-$  <li>sum(A) = sum(B),</li>
-$  <li>sum_squares(A) = sum_squares(B).</li>
-$  </ul>
+$  &lt;ul&gt;
+$  &lt;li&gt;A U B = S,&lt;/li&gt;
+$  &lt;li&gt;|A| = |B|,&lt;/li&gt;
+$  &lt;li&gt;sum(A) = sum(B),&lt;/li&gt;
+$  &lt;li&gt;sum_squares(A) = sum_squares(B).&lt;/li&gt;
+$  &lt;/ul&gt;
 $"""
 $
 $ This Essence' model was created by Hakan Kjellerstrand, hakank@gmail.com .
@@ -120,7 +120,7 @@ letting num_sets be 2
 $ one solution
 $ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16
 $ 1, 1, 2, 2, 2, 2, 1, 1, 2, 2, 1, 1, 1, 1, 2, 2;
-$ ->
+$ -&gt;
 $ 1: {1,2,7,8,11,12,13,14},
 $ 2: {3,4,5,9,10,15,16}
 
@@ -159,7 +159,8 @@ such that
 <script type="text/javascript" src="/csplib-PR-builds/PR-106/syntax_highlighter/shAutoloader.js" ></script>
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
-    ['essence','eprime','param','solution', '/csplib-PR-builds/PR-106/js/shBrushEssence.js'],
+    ['essence','param','solution', '/csplib-PR-builds/PR-106/js/shBrushEssence.js'],
+    ['essenceprime', '/csplib-PR-builds/PR-106/js/shBrushEssencePrime.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-106/js/shBrushMiniZinc.js'],
     ['comet','co', '/csplib-PR-builds/PR-106/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-106/syntax_highlighter/shBrushJScript.js'],

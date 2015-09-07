@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-106/Problems/prob016/models/traffic_lights.eprime">Download</a>
-<pre >$ 
+<pre class ='brush: essenceprime'>$ 
 $ Traffic lights problem in Essence'
 $ 
 $ CSPLib problem 16
@@ -101,7 +101,7 @@ $  represented by the variables P1 to P4 with domains {r,g}.
 $ 
 $ The constraints on these variables can be modelled by quaternary 
 $ constraints on 
-$ (Vi, Pi, Vj, Pj ) for 1<=i<=4, j=(1+i)mod 4 which allow just the tuples 
+$ (Vi, Pi, Vj, Pj ) for 1&lt;=i&lt;=4, j=(1+i)mod 4 which allow just the tuples 
 $ {(r,r,g,g), (ry,r,y,r), (g,g,r,r), (y,r,ry,r)}.
 $
 $ It would be interesting to consider other types of junction (e.g. five roads 
@@ -155,7 +155,7 @@ find P: matrix indexed by [range] of Pedestrians
 
 such that
   forall i, j: range .
-       (j = (1+i) % 4) => table([V[i], P[i], V[j], P[j]], allowed)
+       (j = (1+i) % 4) =&gt; table([V[i], P[i], V[j], P[j]], allowed)
 
 
 
@@ -171,7 +171,8 @@ such that
 <script type="text/javascript" src="/csplib-PR-builds/PR-106/syntax_highlighter/shAutoloader.js" ></script>
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
-    ['essence','eprime','param','solution', '/csplib-PR-builds/PR-106/js/shBrushEssence.js'],
+    ['essence','param','solution', '/csplib-PR-builds/PR-106/js/shBrushEssence.js'],
+    ['essenceprime', '/csplib-PR-builds/PR-106/js/shBrushEssencePrime.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-106/js/shBrushMiniZinc.js'],
     ['comet','co', '/csplib-PR-builds/PR-106/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-106/syntax_highlighter/shBrushJScript.js'],

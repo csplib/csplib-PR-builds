@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-106/Problems/prob057/models/killer_sudoku.eprime">Download</a>
-<pre >$
+<pre class ='brush: essenceprime'>$
 $ Killer Sudoku in Essence'.
 $
 $   http://en.wikipedia.org/wiki/Killer_Sudoku
@@ -189,7 +189,7 @@ such that
 
   $ calculate the hints
   forAll p: int(1..num_p) .
-   (sum([x[  P[p, 2*(i-1)+1], P[p,2*(i-1)+2] ] | i: int(1..num_hints), P[p,2*(i-1)+1] > 0]))  = P[p, 2*num_hints+1]
+   (sum([x[  P[p, 2*(i-1)+1], P[p,2*(i-1)+2] ] | i: int(1..num_hints), P[p,2*(i-1)+1] &gt; 0]))  = P[p, 2*num_hints+1]
  
 </pre>
 
@@ -202,7 +202,8 @@ such that
 <script type="text/javascript" src="/csplib-PR-builds/PR-106/syntax_highlighter/shAutoloader.js" ></script>
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
-    ['essence','eprime','param','solution', '/csplib-PR-builds/PR-106/js/shBrushEssence.js'],
+    ['essence','param','solution', '/csplib-PR-builds/PR-106/js/shBrushEssence.js'],
+    ['essenceprime', '/csplib-PR-builds/PR-106/js/shBrushEssencePrime.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-106/js/shBrushMiniZinc.js'],
     ['comet','co', '/csplib-PR-builds/PR-106/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-106/syntax_highlighter/shBrushJScript.js'],

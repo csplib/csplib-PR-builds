@@ -85,7 +85,7 @@
 
 
 <a href="/csplib-PR-builds/PR-106/Problems/prob001/models/carSequencing.eprime">Download</a>
-<pre >language ESSENCE' 1.0
+<pre class ='brush: essenceprime'>language ESSENCE' 1.0
 
 
 given numcars : int(1..)
@@ -112,7 +112,7 @@ forAll option : int(1..numoptions) .
     forAll windowStart : int(1..numcars-windowSize[option]+1) . 
         (sum pos : int(windowStart..windowStart+windowSize[option]-1) . 
             seq[pos] in toSet([ class | class : int(1..numclasses), optionsRequired[class, option]]) 
-        )<=optMax[option],
+        )&lt;=optMax[option],
 
 forAll option : int(1..numoptions) . 
     (sum pos : int(1..numcars) . 
@@ -136,7 +136,8 @@ gcc(seq, [ i | i : int(1..numclasses)], numberPerClass)
 <script type="text/javascript" src="/csplib-PR-builds/PR-106/syntax_highlighter/shAutoloader.js" ></script>
 <script type="text/javascript">
     SyntaxHighlighter.autoloader(
-    ['essence','eprime','param','solution', '/csplib-PR-builds/PR-106/js/shBrushEssence.js'],
+    ['essence','param','solution', '/csplib-PR-builds/PR-106/js/shBrushEssence.js'],
+    ['essenceprime', '/csplib-PR-builds/PR-106/js/shBrushEssencePrime.js'],
     ['minizinc','mzn', '/csplib-PR-builds/PR-106/js/shBrushMiniZinc.js'],
     ['comet','co', '/csplib-PR-builds/PR-106/js/shBrushComet.js'],
     ['js','javascript','/csplib-PR-builds/PR-106/syntax_highlighter/shBrushJScript.js'],
