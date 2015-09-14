@@ -154,7 +154,7 @@ arrival-times between any two locations, there is only one type of
 arrival-time binary constraint.</li>
 </ul>
 <p>The arrival-time constraint - given two time-slots $t_i, t_j$ there is a conflict
-if </p>
+if</p>
 <p>$$|\rm{time}(t_i)-\rm{time}(t_j)|- \rm{duration}_i &lt; \rm{TravellingTime}(\rm{location}(m_i),
 \rm{location}(m_i))$$</p>
 <p>Simplifying assumptions:</p>
@@ -163,26 +163,26 @@ if </p>
 <li>All Meetings have the same duration and it&rsquo;s 1 time-slot.</li>
 <li>Each agent attends the same number of meetings</li>
 </ul>
-<p>The Density of the CSP network depends on the number of meetings ($m$), 
+<p>The Density of the CSP network depends on the number of meetings ($m$),
 the number of agents ($n$) and the number of meetings per agent ($k$).
-The Tightness of a constraint depends on the domain size of the meetings 
+The Tightness of a constraint depends on the domain size of the meetings
 and the locations of the two constrained meetings. The Density and Tightness
 can be calculated in the following way:</p>
 <p>Density $(p_1)$ - the ratio of the total number of edges to the maximal
-number of possible edges. </p>
+number of possible edges.</p>
 <p>$$p_1 = \rm{edges in the network}/(m*(m - 1)/2)$$</p>
 <p>Tightness $(p_2)$ - the ratio between the total number of eliminated time
 slots to the number of total tuples ($D^2$). Therefore $p_2$ is defined as  </p>
 <p>$$p_2 = (D*(2*s + 1) - s^2)/(D*D)$$</p>
 <p>where $s$ is the travelling time between the meeting locations.</p>
-<p>A Representation of a Meeting Scheduling Problem as CSP is described in 
+<p>A Representation of a Meeting Scheduling Problem as CSP is described in
 Figure 2:</p>
 <p><CENTER>
 <IMG SRC="./assets/MSPasCSP.jpg" ALIGN=bottom
       WIDTH=550 HEIGHT=300>
 </CENTER></p>
 <p>The meeting scheduling problem is naturally described as a Distributed CSP.
-The representation of the MSP as DisCSP is based on the distributed nature 
+The representation of the MSP as DisCSP is based on the distributed nature
 of the problem. The MSP is a distributed negotiation problem between different
 users. Therefore, the agents are associated with the users and not with the
 meetings. The meetings are the variables that must be assigned time slots and
@@ -190,7 +190,7 @@ they are duplicated within all agents that attend the same meeting.</p>
 <p><em>The MSP can be represented as DisCSP in the following way:</em></p>
 <ul>
 <li>Agents - the Group $S$ of agents</li>
-<li>For each Agent $s_i$ in $S$ there is a variable $x_{ij}$, for every 
+<li>For each Agent $s_i$ in $S$ there is a variable $x_{ij}$, for every
 meeting $m_j$ that $s_i$ attends.</li>
 <li>Each agent $s_i$ includes arrival-time constraint between every pair of its
 local variables $x_{ij}, x_{ik}$.</li>
@@ -206,32 +206,32 @@ Figure 3.</p>
 </CENTER></p>
 <p><em>Random Meeting Scheduling Problem (RMSP) specification:</em></p>
 <p>The RMSP can be parameterized in many ways. Parameters can be the number of meetings,
-locations, number of agents, etc. </p>
+locations, number of agents, etc.</p>
 <p>Let us first denote the set of all parameters:</p>
 <ul>
 <li>number of meetings - $m$</li>
 <li>number of agents - $n$</li>
 <li>number of meetings per agent - $k$</li>
 <li>distances between locations of meetings - in units of time slots</li>
-<li>domain size - number of time-slots - $l$ </li>
+<li>domain size - number of time-slots - $l$</li>
 </ul>
 <p>The meetings are the set of $m$ variables of the constraints network, each
 representing a meeting at a specific location. The domains of values are the
-time-slots $l$. An edge between any pair of variables represents an agent 
+time-slots $l$. An edge between any pair of variables represents an agent
 that participates in both meetings. The density of the constraints network is
 a function of the number of edges in the network. The number of edges in the
 network depends on the number of agents and the distribution of meetings
-that each agent attends. </p>
+that each agent attends.</p>
 <p>If each agent participates in $k$ meetings, we generate the resulting CSP
-as follows: </p>
-<p>For each of the $n$ agents a clique of $k$ variables (meetings) is selected 
+as follows:</p>
+<p>For each of the $n$ agents a clique of $k$ variables (meetings) is selected
 randomly, such that not all of the edges of the clique are already in the
 network. All the edges of the generated clique are added to the CSP network,
-representing  the arrival-time constraints between the meetings of each agent. 
+representing  the arrival-time constraints between the meetings of each agent.
 The arrival-time between each two meetings is also randomly generated. Note,
 that an agent $A_i$ adds an arrival-constraint between meetings $m_j, m_k$
 only if there is no other agent that attends both meetings. Two agents or
-more that participate in $m_j, m_k$ define only one arrival-constraint. 
+more that participate in $m_j, m_k$ define only one arrival-constraint.
 The distance between locations of meetings randomly generated according to
 the given range (between the minimal meeting distance and the maximal one).</p>
 <p>Below is an example of a randomly generated Meeting Scheduling Problem:</p>
