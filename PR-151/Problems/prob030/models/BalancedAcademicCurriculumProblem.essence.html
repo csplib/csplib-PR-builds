@@ -90,27 +90,29 @@
 
 
 <a href="/csplib-PR-builds/PR-151/Problems/prob030/models/BalancedAcademicCurriculumProblem.essence">Download</a>
-<pre class ='brush: essence'>language ESSENCE 1.2.0
+<pre class ='brush: essence'>language Essence 1.3
 $ prob030.essence: Balanced Academic Curriculum Problem
 $ Problem details available at http://www.csplib.org/Problems/prob030/
 $ 07 September 2007
 $
 
-given n_periods, maxl, minl, n_courses, maxc, minc : int(1..)
+given n_courses, n_periods,
+      load_per_period_lb, load_per_period_ub,
+      courses_per_period_lb, courses_per_period_ub : int(1..)
 
 letting Course be domain int(1..n_courses),
         Period be domain int(1..n_periods)
 
-given prereq : relation of (Course*Course),
-      credits : function (total) Course --&gt; int(1..)
+given prerequisite : relation of (Course * Course),
+      course_load : function (total) Course --&gt; int(1..)
 
 find curr : function (total) Course --&gt; Period
 
 such that
-    forAll c1,c2 : Course . prereq(c1,c2) -&gt; curr(c1) &lt; curr(c2),
-    forAll p : Period . (sum c in preImage(curr,p) . credits(c)) &lt;= maxl /\
-                        (sum c in preImage(curr,p) . credits(c)) &gt;= minl,
-    forAll p : Period . |preImage(curr,p)| &lt;= maxc /\ |preImage(curr,p)| &gt;= minc
+    forAll c1,c2 : Course . prerequisite(c1,c2) -&gt; curr(c1) &lt; curr(c2),
+    forAll p : Period . (sum c in preImage(curr,p) . course_load(c)) &lt;= load_per_period_ub /\
+                        (sum c in preImage(curr,p) . course_load(c)) &gt;= load_per_period_lb,
+    forAll p : Period . |preImage(curr,p)| &lt;= courses_per_period_ub /\ |preImage(curr,p)| &gt;= courses_per_period_lb
 
 
 </pre>
