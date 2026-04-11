@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- <link rel="shortcut icon" href="../../assets/ico/favicon.png"> -->
+
+	<title>Essence</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/csplib-PR-builds/PR-242/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<link href="/csplib-PR-builds/PR-242/css/main.css" rel="stylesheet">
+	<script src="/csplib-PR-builds/PR-242/js/jquery.min.js" ></script>
+
+	<!-- Enable table sorting -->
+	<script src="/csplib-PR-builds/PR-242/js/tablesorter/jquery.tablesorter.min.js"></script>
+	<link rel="stylesheet" href="/csplib-PR-builds/PR-242/js/tablesorter/blue/style.css" type="text/css"/>
+	<script type="text/javascript">
+	$(function() {
+		$(".tablesorter").tablesorter();
+	});
+	</script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML.js">
+	MathJax.Hub.Config({
+	  	tex2jax: {
+	    inlineMath: [['$','$'], ['\\(','\\)']],
+	    processEscapes: true
+	  	}
+	});
+	</script>
+
+
+</head>
+
+<body>
+
+	<ol class="breadcrumb">
+  	  <li><a href="/csplib-PR-builds/PR-242/">CSPLib</a></li>
+
+  <li><a href="/csplib-PR-builds/PR-242/Languages">Languages</a></li>
+  <li><a href="/csplib-PR-builds/PR-242/Languages/Essence">Essence</a></li>
+	</ol>
+
+	<div class="container">
+
+		<div class="page-header">
+			<h1>Essence</h1>
+
+
+<!-- macro to Not made a link if on the page the link links to -->
+
+
+<header class="nav-header">
+<div class="nav-container">
+  <nav class="nav">
+  <ul>
+    	<li><a href="" class='current-item'>Specification</a></li>
+
+    	<li><a href="/csplib-PR-builds/PR-242/Languages/Essence/data">Data files</a></li>
+
+    	<li><a href="/csplib-PR-builds/PR-242/Languages/Essence/references">References</a></li>
+
+    	<li><a href="/csplib-PR-builds/PR-242/Languages/Essence/models">Models</a></li>
+
+    	<li><a href="/csplib-PR-builds/PR-242/Languages/Essence/cite">Cite</a></li>
+
+    <li style="float:right"><a href="https://github.com/csplib/csplib/blob/main/Languages/Essence/specification.md">Edit Page</a></li>
+  </ul>
+  </nav>
+</div>
+</header>
+
+
+		</div>
+
+
+
+<p>ESSENCE is a high-level constraint specification language; it allows a combinatorial (optimisation) problem to be specified at a level of abstraction above that at which modelling decisions are made.</p>
+<p>The most notable feature of Essence is the support for high-level nested types, for example a &lsquo;set (size 3) of partition of int(1..20)&rsquo;.</p>
+<p>There has been one publicly available implementation of Essence:</p>
+<ul>
+<li><a href="https://github.com/conjure-cp/conjure">Conjure</a> is a complete implementation of the Essence language, which maps Essence to Essence Prime. Conjure is described in<span> <a class="bibref" data-bibfragment="AkgunThesis" href="/csplib-PR-builds/PR-242/Languages/Essence/references/#AkgunThesis">[AkgunThesis]</a></span> and in<span> <a class="bibref" data-bibfragment="akgun2022conjure" href="/csplib-PR-builds/PR-242/Languages/Essence/references/#akgun2022conjure">[akgun2022conjure]</a></span>.</li>
+</ul>
+
+
+All the Essence models can be downloaded as a  <a href ="/csplib-PR-builds/PR-242/Languages/Essence/Essence.zip"> zip file </a>
+
+
+	</div>
+
+
+
+</div>
+
+<div id="footer">
+
+    <center><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. </center>
+
+</div>
+  <!-- float footer to bottom of page -->
+  <script>
+
+    $(document).ready(function() {
+
+     var docHeight = $(window).height();
+     var footerHeight = $('#footer').height();
+     var footerTop = $('#footer').position().top + footerHeight;
+
+     if (footerTop + 20 < docHeight) {
+      $('#footer').css('margin-top',  (docHeight - (footerTop + 20)) + 'px');
+     }
+    });
+   </script>
+</body>
+
+</html>

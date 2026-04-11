@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- <link rel="shortcut icon" href="../../assets/ico/favicon.png"> -->
+
+	<title>050: Diamond-free Degree Sequences</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/csplib-PR-builds/PR-242/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<link href="/csplib-PR-builds/PR-242/css/main.css" rel="stylesheet">
+	<script src="/csplib-PR-builds/PR-242/js/jquery.min.js" ></script>
+
+	<!-- Enable table sorting -->
+	<script src="/csplib-PR-builds/PR-242/js/tablesorter/jquery.tablesorter.min.js"></script>
+	<link rel="stylesheet" href="/csplib-PR-builds/PR-242/js/tablesorter/blue/style.css" type="text/css"/>
+	<script type="text/javascript">
+	$(function() {
+		$(".tablesorter").tablesorter();
+	});
+	</script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML.js">
+	MathJax.Hub.Config({
+	  	tex2jax: {
+	    inlineMath: [['$','$'], ['\\(','\\)']],
+	    processEscapes: true
+	  	}
+	});
+	</script>
+
+  
+	<link type="text/css" rel="stylesheet" href="/csplib-PR-builds/PR-242/syntax_highlighter/shCoreDefault.css"/>
+
+</head>
+
+<body>
+
+	<ol class="breadcrumb">
+    	  <li><a href="/csplib-PR-builds/PR-242/">CSPLib</a></li>
+
+  <li><a href="/csplib-PR-builds/PR-242/Problems">Problems</a></li>
+  <li><a href="/csplib-PR-builds/PR-242/Problems/prob050">prob050</a></li>
+
+  <li><a href="/csplib-PR-builds/PR-242/Problems/prob050/models">Models</a></li>
+  <li>DiamondFree.essence</li>
+	</ol>
+
+	<div class="container">
+
+		<div class="page-header">
+			<h1>050: Diamond-free Degree Sequences</h1>
+
+
+<!-- macro to Not made a link if on the page the link links to -->
+
+
+<header class="nav-header">
+<div class="nav-container">
+  <nav class="nav">
+  <ul>
+     	<li><a href="/csplib-PR-builds/PR-242/Problems/prob050/">Specification</a></li>
+
+     	<li><a class='no-files' href="/csplib-PR-builds/PR-242/Problems/prob050/data">Data files</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-242/Problems/prob050/results">Results</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-242/Problems/prob050/references">References</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-242/Problems/prob050/models">Models</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-242/Problems/prob050/cite">Cite</a></li>
+
+    <li><a href="/csplib-PR-builds/PR-242/Problems/prob050.json" >Json</a></li>
+
+    <li style="float:right"><a href="https://github.com/csplib/csplib/blob/main/Problems/prob050/models/DiamondFree.essence">Edit Page</a></li>
+  </ul>
+  </nav>
+</div>
+</header>
+
+
+		</div>
+
+
+<a href="/csplib-PR-builds/PR-242/Problems/prob050/models/DiamondFree.essence">Download</a>
+<pre class ='brush: essence'>$ from http://csplib.org/Problems/prob050
+$ 050: Diamond-free Degree Sequences
+$ Proposed by Alice Miller, Patrick Prosser
+
+language Essence 1.3
+
+
+$ Given a simple undirected graph G=(V,E),
+$ where V is the set of vertices
+$ and E the set of undirected edges,
+$ the edge {u,v} is in E if and only if vertex u is adjacent to vertex v∈G.
+
+$ The graph is simple in that there are no loop edges,
+$ i.e. we have no edges of the form {v,v}.
+$ Each vertex v∈V has a degree dv
+$ i.e. the number of edges incident on that vertex.
+
+$ Consequently a graph has a degree sequence d1,…,dn, where di&gt;=di+1.
+
+$ A diamond is a set of four vertices in V such that there are at least five edges between those vertices.
+$ Conversely, a graph is diamond-free if it has no diamond as an induced subgraph,
+$ i.e. for every set of four vertices the number of edges between those vertices is at most four.
+
+$ In our problem we have additional properties required of the degree sequences of the graphs,
+$ in particular that the degree of each vertex is greater than zero (i.e. isolated vertices are disallowed),
+$ the degree of each vertex is modulo 3, and the sum of the degrees is modulo 12 (i.e. |E| is modulo 6).
+
+$ The problem is then for a given value of n, produce all unique degree sequences d1,…,dn such that
+$ - di≥di+1
+$ - each degree di&gt;0 and di is modulo 3
+$ - the sum of the degrees is modulo 12
+$ - there exists a simple diamond-free graph with that degree sequence
+
+given n : int
+letting NODE be domain int(1..n)
+
+find edges : relation (symmetric, irreflexive) of (NODE * NODE)
+find degrees : function (total) NODE --&gt; int(1..n)
+
+$ calculate the degrees
+such that forAll i : NODE . degrees(i) = sum([toInt((i,j) in edges) | j : NODE])
+
+$ symmetry breaking, nodes have decreasing degree
+such that forAll i : int(2..n) . degrees(i-1) &gt;= degrees(i)
+
+$ for every set of four vertices,
+$ the number of edges between those vertices is at most four
+such that
+    forAll i,j,k,l : NODE, i &lt; j /\ j &lt; k /\ k &lt; l .
+        |{(i,j), (i,k), (i,l), (j,k), (j,l), (k,l)} intersect toSet(edges)| &lt;= 4
+
+$ degrees are modulo 3
+such that
+    forAll i : NODE . degrees(i) % 3 = 0
+
+$ sum of degrees is modulo 12
+such that
+    (sum i : NODE . degrees(i)) % 12 = 0
+
+$ we are only interested in unique degrees
+branching on [degrees]
+
+</pre>
+
+
+	</div>
+
+
+<!-- Syntax highlighter  -->
+<script type="text/javascript" src="/csplib-PR-builds/PR-242/syntax_highlighter/shCore.js"></script>
+<script type="text/javascript" src="/csplib-PR-builds/PR-242/syntax_highlighter/shAutoloader.js" ></script>
+<script type="text/javascript">
+    SyntaxHighlighter.autoloader(
+
+    // Languages that have a language page in csplib
+    // Only the Title from specification.md converted to lower case should be used.
+    ['comet',        '/csplib-PR-builds/PR-242/js/shBrushComet.js'],
+    ['eclipse',      '/csplib-PR-builds/PR-242/js/shBrushECLiPSe.js'],
+    ['essence',      '/csplib-PR-builds/PR-242/js/shBrushEssence.js'],
+    ['essenceprime', '/csplib-PR-builds/PR-242/js/shBrushEssencePrime.js'],
+    ['minizinc',     '/csplib-PR-builds/PR-242/js/shBrushMiniZinc.js'],
+
+
+    // Standard Programming languages
+    ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushCpp.js'],
+    ['erl','hrl', '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushErlang.js'] ,
+    ['cs'       , '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushCSharp.js'] ,
+    ['groovy'   , '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushGroovy.js'] ,
+    ['java'     , '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushJava.js']   ,
+    ['js'       , '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushJScript.js'],
+    ['php'      , '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushPhp.js']    ,
+    ['pl'       , '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushPerl.js']   ,
+    ['py'       , '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushPython.js'] ,
+    ['rb'       , '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushRuby.js']   ,
+    ['scala'    , '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushScala.js']  ,
+    ['xml'      , '/csplib-PR-builds/PR-242/syntax_highlighter/shBrushXml.js']
+ 	);
+
+	SyntaxHighlighter.defaults['toolbar'] = false;
+  SyntaxHighlighter.all();
+</script>
+
+
+</div>
+
+<div id="footer">
+
+    <center><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. </center>
+
+</div>
+  <!-- float footer to bottom of page -->
+  <script>
+
+    $(document).ready(function() {
+
+     var docHeight = $(window).height();
+     var footerHeight = $('#footer').height();
+     var footerTop = $('#footer').position().top + footerHeight;
+
+     if (footerTop + 20 < docHeight) {
+      $('#footer').css('margin-top',  (docHeight - (footerTop + 20)) + 'px');
+     }
+    });
+   </script>
+</body>
+
+</html>
