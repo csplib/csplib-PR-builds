@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- <link rel="shortcut icon" href="../../assets/ico/favicon.png"> -->
+
+	<title>092: Half-block School Timetabling</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/csplib-PR-builds/PR-244/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<link href="/csplib-PR-builds/PR-244/css/main.css" rel="stylesheet">
+	<script src="/csplib-PR-builds/PR-244/js/jquery.min.js" ></script>
+
+	<!-- Enable table sorting -->
+	<script src="/csplib-PR-builds/PR-244/js/tablesorter/jquery.tablesorter.min.js"></script>
+	<link rel="stylesheet" href="/csplib-PR-builds/PR-244/js/tablesorter/blue/style.css" type="text/css"/>
+	<script type="text/javascript">
+	$(function() {
+		$(".tablesorter").tablesorter();
+	});
+	</script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML.js">
+	MathJax.Hub.Config({
+	  	tex2jax: {
+	    inlineMath: [['$','$'], ['\\(','\\)']],
+	    processEscapes: true
+	  	}
+	});
+	</script>
+
+  
+	<link type="text/css" rel="stylesheet" href="/csplib-PR-builds/PR-244/syntax_highlighter/shCoreDefault.css"/>
+
+</head>
+
+<body>
+
+	<ol class="breadcrumb">
+    	  <li><a href="/csplib-PR-builds/PR-244/">CSPLib</a></li>
+
+  <li><a href="/csplib-PR-builds/PR-244/Problems">Problems</a></li>
+  <li><a href="/csplib-PR-builds/PR-244/Problems/prob092">prob092</a></li>
+
+  <li><a href="/csplib-PR-builds/PR-244/Problems/prob092/data">Data</a></li>
+  <li>school2_groups.csv</li>
+	</ol>
+
+	<div class="container">
+
+		<div class="page-header">
+			<h1>092: Half-block School Timetabling</h1>
+
+
+<!-- macro to Not made a link if on the page the link links to -->
+
+
+<header class="nav-header">
+<div class="nav-container">
+  <nav class="nav">
+  <ul>
+     	<li><a href="/csplib-PR-builds/PR-244/Problems/prob092/">Specification</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-244/Problems/prob092/data">Data files</a></li>
+
+     	<li><a class='no-files' href="/csplib-PR-builds/PR-244/Problems/prob092/results">Results</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-244/Problems/prob092/references">References</a></li>
+
+     	<li><a class='no-files' href="/csplib-PR-builds/PR-244/Problems/prob092/models">Models</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-244/Problems/prob092/cite">Cite</a></li>
+
+    <li><a href="/csplib-PR-builds/PR-244/Problems/prob092.json" >Json</a></li>
+
+    <li style="float:right"><a href="https://github.com/csplib/csplib/blob/main/Problems/prob092/data/school2_groups.csv">Edit Page</a></li>
+  </ul>
+  </nav>
+</div>
+</header>
+
+
+		</div>
+
+
+<a href="/csplib-PR-builds/PR-244/Problems/prob092/data/school2_groups.csv">Download</a>
+<pre >subject,room,teacher,grade,cap,low
+S1,l15,p14,sec4,35,29
+S2,l07,p06,sec3,35,27
+S2,l07,p06,sec3,35,27
+S3,l07,p06,sec4,35,34
+S3,l07,p06,sec4,35,34
+S4,l14,p13,sec4,35,23
+S4,l14,p26,sec4,35,23
+S5,l07,p06,sec5,35,16
+S5,l07,p06,sec5,35,16
+S5,l07,p06,sec5,35,16
+S6,l01,p01,sec5,35,25
+S6,l17,p20,sec5,35,25
+S6,l17,p20,sec5,35,25
+S7,l00,p00,sec4,35,16
+S7,l22,p24,sec4,35,16
+S7,l22,p24,sec4,35,16
+S7,l00,p25,sec4,35,16
+S8,l11,p09,sec4,43,42
+S8,l11,p09,sec4,43,42
+S8,l10,p12,sec4,43,42
+S8,l10,p12,sec4,43,42
+S9,l02,p02,sec3,35,17
+S9,l02,p02,sec3,35,17
+S9,l02,p02,sec3,35,17
+S9,l02,p02,sec3,35,17
+S9,l02,p02,sec3,35,17
+S10,l04,p04,sec5,35,24
+S10,l04,p04,sec5,35,24
+S10,l04,p04,sec5,35,24
+S10,l04,p04,sec5,35,24
+S10,l04,p04,sec5,35,24
+S11,l19,p14,sec5,35,28
+S11,l19,p14,sec5,35,28
+S11,l19,p14,sec5,35,28
+S11,l18,p19,sec5,35,28
+S11,l01,p18,sec5,35,28
+S12,l03,p03,sec4,37,36
+S12,l03,p03,sec4,37,36
+S12,l03,p03,sec4,37,36
+S12,l03,p03,sec4,37,36
+S12,l03,p03,sec4,37,36
+S12,l03,p03,sec4,37,36
+S12,l03,p03,sec4,37,36
+S13,l05,p05,sec5,35,27
+S13,l05,p05,sec5,35,27
+S13,l05,p05,sec5,35,27
+S13,l06,p05,sec5,35,27
+S13,l06,p05,sec5,35,27
+S13,l06,p05,sec5,35,27
+S13,l06,p05,sec5,35,27
+S14,l08,p07,sec3,35,16
+S14,l08,p07,sec3,35,16
+S14,l08,p07,sec3,35,16
+S14,l08,p07,sec3,35,16
+S14,l08,p07,sec3,35,16
+S14,l09,p08,sec3,35,16
+S14,l10,p08,sec3,35,16
+S15,l13,p10,sec5,35,27
+S15,l13,p10,sec5,35,27
+S15,l13,p10,sec5,35,27
+S15,l13,p10,sec5,35,27
+S15,l13,p11,sec5,35,27
+S15,l09,p10,sec5,35,27
+S15,l08,p12,sec5,35,27
+S16,l20,p21,sec3,36,35
+S16,l20,p21,sec3,36,35
+S16,l20,p21,sec3,36,35
+S16,l20,p21,sec3,36,35
+S16,l20,p22,sec3,36,35
+S16,l21,p23,sec3,36,35
+S16,l21,p23,sec3,36,35
+S17,l16,p15,sec3,35,28
+S17,l16,p15,sec3,35,28
+S17,l16,p15,sec3,35,28
+S17,l16,p15,sec3,35,28
+S17,l16,p16,sec3,35,28
+S17,l16,p16,sec3,35,28
+S17,l17,p16,sec3,35,28
+S17,l22,p27,sec3,35,28
+S18,l11,p09,sec4,36,35
+S18,l11,p09,sec4,36,35
+S18,l11,p09,sec4,36,35
+S18,l08,p07,sec4,36,35
+S18,l08,p07,sec4,36,35
+S18,l12,p07,sec4,36,35
+S18,l08,p07,sec4,36,35
+S18,l08,p07,sec4,36,35
+S18,l08,p07,sec4,36,35
+S19,l18,p17,sec4,35,17
+S19,l18,p17,sec4,35,17
+S19,l19,p18,sec4,35,17
+S19,l01,p18,sec4,35,17
+S19,l19,p18,sec4,35,17
+S19,l18,p17,sec4,35,17
+S19,l18,p17,sec4,35,17
+S19,l01,p01,sec4,35,17
+S19,l17,p16,sec4,35,17
+
+</pre>
+
+
+	</div>
+
+
+<!-- Syntax highlighter  -->
+<script type="text/javascript" src="/csplib-PR-builds/PR-244/syntax_highlighter/shCore.js"></script>
+<script type="text/javascript" src="/csplib-PR-builds/PR-244/syntax_highlighter/shAutoloader.js" ></script>
+<script type="text/javascript">
+    SyntaxHighlighter.autoloader(
+
+    // Languages that have a language page in csplib
+    // Only the Title from specification.md converted to lower case should be used.
+    ['comet',        '/csplib-PR-builds/PR-244/js/shBrushComet.js'],
+    ['eclipse',      '/csplib-PR-builds/PR-244/js/shBrushECLiPSe.js'],
+    ['essence',      '/csplib-PR-builds/PR-244/js/shBrushEssence.js'],
+    ['essenceprime', '/csplib-PR-builds/PR-244/js/shBrushEssencePrime.js'],
+    ['minizinc',     '/csplib-PR-builds/PR-244/js/shBrushMiniZinc.js'],
+
+
+    // Standard Programming languages
+    ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushCpp.js'],
+    ['erl','hrl', '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushErlang.js'] ,
+    ['cs'       , '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushCSharp.js'] ,
+    ['groovy'   , '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushGroovy.js'] ,
+    ['java'     , '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushJava.js']   ,
+    ['js'       , '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushJScript.js'],
+    ['php'      , '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushPhp.js']    ,
+    ['pl'       , '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushPerl.js']   ,
+    ['py'       , '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushPython.js'] ,
+    ['rb'       , '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushRuby.js']   ,
+    ['scala'    , '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushScala.js']  ,
+    ['xml'      , '/csplib-PR-builds/PR-244/syntax_highlighter/shBrushXml.js']
+ 	);
+
+	SyntaxHighlighter.defaults['toolbar'] = false;
+  SyntaxHighlighter.all();
+</script>
+
+
+</div>
+
+<div id="footer">
+
+    <center><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. </center>
+
+</div>
+  <!-- float footer to bottom of page -->
+  <script>
+
+    $(document).ready(function() {
+
+     var docHeight = $(window).height();
+     var footerHeight = $('#footer').height();
+     var footerTop = $('#footer').position().top + footerHeight;
+
+     if (footerTop + 20 < docHeight) {
+      $('#footer').css('margin-top',  (docHeight - (footerTop + 20)) + 'px');
+     }
+    });
+   </script>
+</body>
+
+</html>

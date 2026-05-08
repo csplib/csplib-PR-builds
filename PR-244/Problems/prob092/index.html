@@ -1,0 +1,789 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- <link rel="shortcut icon" href="../../assets/ico/favicon.png"> -->
+
+	<title>092: Half-block School Timetabling</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/csplib-PR-builds/PR-244/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<link href="/csplib-PR-builds/PR-244/css/main.css" rel="stylesheet">
+	<script src="/csplib-PR-builds/PR-244/js/jquery.min.js" ></script>
+
+	<!-- Enable table sorting -->
+	<script src="/csplib-PR-builds/PR-244/js/tablesorter/jquery.tablesorter.min.js"></script>
+	<link rel="stylesheet" href="/csplib-PR-builds/PR-244/js/tablesorter/blue/style.css" type="text/css"/>
+	<script type="text/javascript">
+	$(function() {
+		$(".tablesorter").tablesorter();
+	});
+	</script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML.js">
+	MathJax.Hub.Config({
+	  	tex2jax: {
+	    inlineMath: [['$','$'], ['\\(','\\)']],
+	    processEscapes: true
+	  	}
+	});
+	</script>
+
+
+</head>
+
+<body>
+
+	<ol class="breadcrumb">
+  	  <li><a href="/csplib-PR-builds/PR-244/">CSPLib</a></li>
+
+  <li><a href="/csplib-PR-builds/PR-244/Problems">Problems</a></li>
+  <li><a href="/csplib-PR-builds/PR-244/Problems/prob092">prob092</a></li>
+	</ol>
+
+	<div class="container">
+
+		<div class="page-header">
+			<h1>092: Half-block School Timetabling</h1>
+
+
+<!-- macro to Not made a link if on the page the link links to -->
+
+
+<header class="nav-header">
+<div class="nav-container">
+  <nav class="nav">
+  <ul>
+     	<li><a href="" class='current-item'>Specification</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-244/Problems/prob092/data">Data files</a></li>
+
+     	<li><a class='no-files' href="/csplib-PR-builds/PR-244/Problems/prob092/results">Results</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-244/Problems/prob092/references">References</a></li>
+
+     	<li><a class='no-files' href="/csplib-PR-builds/PR-244/Problems/prob092/models">Models</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-244/Problems/prob092/cite">Cite</a></li>
+
+    <li><a href="/csplib-PR-builds/PR-244/Problems/prob092.json" >Json</a></li>
+
+    <li style="float:right"><a href="https://github.com/csplib/csplib/blob/main/Problems/prob092/specification.md">Edit Page</a></li>
+  </ul>
+  </nav>
+</div>
+</header>
+
+
+		</div>
+
+
+<p class='proposed'>
+Proposed by Bérénice Dubois
+</p>
+
+<p>This is a timetabling problem with instances coming from real Canadian high schools, where students must be assigned to groups and these groups must be scheduled into compatible time clusters.</p>
+<h2>Courses</h2>
+<p>Each <strong>subject</strong> may have multiple <strong>course-groups</strong> (i.e., sections). Each course-group represents one instance of a subject taught by a specific teacher in a specific room.</p>
+<p>A course-group is defined by:
+- subject
+- teacher
+- room
+- grade level
+- maximum capacity (<code>cap</code>)
+- minimum capacity (<code>low</code>)</p>
+<p>Each row in <code>schoolX_groups.csv</code> corresponds to one course-group.</p>
+<table>
+<thead>
+<tr>
+<th>subject</th>
+<th>room</th>
+<th>teacher</th>
+<th>grade</th>
+<th>cap</th>
+<th>low</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td>l02</td>
+<td>p02</td>
+<td>sec4</td>
+<td>32</td>
+<td>21</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>l09</td>
+<td>p09</td>
+<td>sec5</td>
+<td>33</td>
+<td>33</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>l10</td>
+<td>p10</td>
+<td>sec5</td>
+<td>32</td>
+<td>30</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>l04</td>
+<td>p04</td>
+<td>sec3</td>
+<td>33</td>
+<td>33</td>
+</tr>
+<tr>
+<td>S5</td>
+<td>l15</td>
+<td>p16</td>
+<td>sec4</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S6</td>
+<td>l03</td>
+<td>p03</td>
+<td>sec3</td>
+<td>33</td>
+<td>33</td>
+</tr>
+<tr>
+<td>S7</td>
+<td>l02</td>
+<td>p02</td>
+<td>sec3</td>
+<td>33</td>
+<td>33</td>
+</tr>
+<tr>
+<td>S7</td>
+<td>l02</td>
+<td>p02</td>
+<td>sec3</td>
+<td>33</td>
+<td>33</td>
+</tr>
+<tr>
+<td>S8</td>
+<td>l05</td>
+<td>p05</td>
+<td>sec4</td>
+<td>34</td>
+<td>34</td>
+</tr>
+<tr>
+<td>S8</td>
+<td>l05</td>
+<td>p05</td>
+<td>sec4</td>
+<td>34</td>
+<td>34</td>
+</tr>
+<tr>
+<td>S9</td>
+<td>l03</td>
+<td>p03</td>
+<td>sec4</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S9</td>
+<td>l03</td>
+<td>p03</td>
+<td>sec4</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>l09</td>
+<td>p08</td>
+<td>sec4</td>
+<td>33</td>
+<td>33</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>l09</td>
+<td>p08</td>
+<td>sec4</td>
+<td>33</td>
+<td>33</td>
+</tr>
+<tr>
+<td>S10</td>
+<td>l09</td>
+<td>p09</td>
+<td>sec4</td>
+<td>33</td>
+<td>33</td>
+</tr>
+<tr>
+<td>S11</td>
+<td>l11</td>
+<td>p11</td>
+<td>sec4</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S11</td>
+<td>l12</td>
+<td>p12</td>
+<td>sec4</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S11</td>
+<td>l12</td>
+<td>p12</td>
+<td>sec4</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S12</td>
+<td>l06</td>
+<td>p06</td>
+<td>sec5</td>
+<td>36</td>
+<td>36</td>
+</tr>
+<tr>
+<td>S12</td>
+<td>l06</td>
+<td>p06</td>
+<td>sec5</td>
+<td>36</td>
+<td>36</td>
+</tr>
+<tr>
+<td>S12</td>
+<td>l06</td>
+<td>p06</td>
+<td>sec5</td>
+<td>36</td>
+<td>36</td>
+</tr>
+<tr>
+<td>S13</td>
+<td>l00</td>
+<td>p00</td>
+<td>sec3</td>
+<td>34</td>
+<td>34</td>
+</tr>
+<tr>
+<td>S13</td>
+<td>l00</td>
+<td>p00</td>
+<td>sec3</td>
+<td>34</td>
+<td>34</td>
+</tr>
+<tr>
+<td>S13</td>
+<td>l00</td>
+<td>p00</td>
+<td>sec3</td>
+<td>34</td>
+<td>34</td>
+</tr>
+<tr>
+<td>S13</td>
+<td>l00</td>
+<td>p00</td>
+<td>sec3</td>
+<td>34</td>
+<td>34</td>
+</tr>
+<tr>
+<td>S14</td>
+<td>l01</td>
+<td>p01</td>
+<td>sec5</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S14</td>
+<td>l01</td>
+<td>p01</td>
+<td>sec5</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S14</td>
+<td>l01</td>
+<td>p01</td>
+<td>sec5</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S14</td>
+<td>l01</td>
+<td>p01</td>
+<td>sec5</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S15</td>
+<td>l13</td>
+<td>p13</td>
+<td>sec3</td>
+<td>35</td>
+<td>35</td>
+</tr>
+<tr>
+<td>S15</td>
+<td>l14</td>
+<td>p14</td>
+<td>sec3</td>
+<td>35</td>
+<td>35</td>
+</tr>
+<tr>
+<td>S15</td>
+<td>l14</td>
+<td>p13</td>
+<td>sec3</td>
+<td>35</td>
+<td>35</td>
+</tr>
+<tr>
+<td>S15</td>
+<td>l13</td>
+<td>p15</td>
+<td>sec3</td>
+<td>35</td>
+<td>35</td>
+</tr>
+<tr>
+<td>S16</td>
+<td>l16</td>
+<td>p17</td>
+<td>sec5</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S16</td>
+<td>l16</td>
+<td>p17</td>
+<td>sec5</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S16</td>
+<td>l16</td>
+<td>p17</td>
+<td>sec5</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S16</td>
+<td>l16</td>
+<td>p17</td>
+<td>sec5</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S17</td>
+<td>l07</td>
+<td>p07</td>
+<td>sec4</td>
+<td>37</td>
+<td>37</td>
+</tr>
+<tr>
+<td>S17</td>
+<td>l07</td>
+<td>p07</td>
+<td>sec4</td>
+<td>37</td>
+<td>37</td>
+</tr>
+<tr>
+<td>S17</td>
+<td>l08</td>
+<td>p07</td>
+<td>sec4</td>
+<td>37</td>
+<td>37</td>
+</tr>
+<tr>
+<td>S17</td>
+<td>l08</td>
+<td>p07</td>
+<td>sec4</td>
+<td>37</td>
+<td>37</td>
+</tr>
+<tr>
+<td>S18</td>
+<td>l01</td>
+<td>p01</td>
+<td>sec4</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S18</td>
+<td>l01</td>
+<td>p01</td>
+<td>sec4</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S18</td>
+<td>l01</td>
+<td>p01</td>
+<td>sec4</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S18</td>
+<td>l01</td>
+<td>p01</td>
+<td>sec4</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr>
+<td>S18</td>
+<td>l01</td>
+<td>p01</td>
+<td>sec4</td>
+<td>32</td>
+<td>26</td>
+</tr>
+</tbody>
+</table>
+<p>All course-groups of the same subject must be scheduled on a <strong>block</strong> of meeting periods, such that two course-groups either have all their periods in common, or none. Therefore, the problem can be modeled as assigning course-groups to <strong>time clusters</strong></p>
+<p>Students assigned to different course-groups in the same cluster cannot attend both.</p>
+<h2>Students</h2>
+<p>Students must be assigned to course-groups.</p>
+<p>Each student follows a fixed <strong>curriculum</strong>, defined as a set of subjects. This selection cannot be modified.</p>
+<p>The file <code>schoolX_curricula.csv</code> contains:
+- the number of students following each curriculum
+- the list of subjects in that curriculum</p>
+<p>Each row represents a group of identical students. The curricula may have varied lengths and students with shorter curriculum will have shorter schedules.</p>
+<table>
+<thead>
+<tr>
+<th>num_students</th>
+<th>subject_1</th>
+<th>subject_2</th>
+<th>subject_3</th>
+<th>subject_4</th>
+<th>subject_5</th>
+<th>subject_6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>71</td>
+<td>S13</td>
+<td>S15</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>29</td>
+<td>S11</td>
+<td>S12</td>
+<td>S14</td>
+<td>S16</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>19</td>
+<td>S10</td>
+<td>S12</td>
+<td>S14</td>
+<td>S16</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>S9</td>
+<td>S15</td>
+<td>S17</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td>S9</td>
+<td>S11</td>
+<td>S17</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>31</td>
+<td>S9</td>
+<td>S10</td>
+<td>S17</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>26</td>
+<td>S8</td>
+<td>S11</td>
+<td>S17</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>34</td>
+<td>S8</td>
+<td>S10</td>
+<td>S17</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>33</td>
+<td>S6</td>
+<td>S7</td>
+<td>S13</td>
+<td>S15</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td>S5</td>
+<td>S11</td>
+<td>S17</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>S5</td>
+<td>S10</td>
+<td>S17</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>33</td>
+<td>S4</td>
+<td>S7</td>
+<td>S13</td>
+<td>S15</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>30</td>
+<td>S3</td>
+<td>S12</td>
+<td>S14</td>
+<td>S16</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>S2</td>
+<td>S14</td>
+<td>S16</td>
+<td>S17</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>31</td>
+<td>S2</td>
+<td>S12</td>
+<td>S14</td>
+<td>S16</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>S1</td>
+<td>S9</td>
+<td>S17</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>S1</td>
+<td>S9</td>
+<td>S11</td>
+<td>S15</td>
+<td>S17</td>
+<td>S18</td>
+</tr>
+<tr>
+<td>1</td>
+<td>S1</td>
+<td>S9</td>
+<td>S10</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>S1</td>
+<td>S9</td>
+<td>S10</td>
+<td>S15</td>
+<td>S17</td>
+<td>S18</td>
+</tr>
+<tr>
+<td>6</td>
+<td>S1</td>
+<td>S8</td>
+<td>S17</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>S1</td>
+<td>S8</td>
+<td>S10</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>S1</td>
+<td>S5</td>
+<td>S17</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>S1</td>
+<td>S5</td>
+<td>S11</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>S1</td>
+<td>S5</td>
+<td>S10</td>
+<td>S18</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>S1</td>
+<td>S5</td>
+<td>S10</td>
+<td>S15</td>
+<td>S17</td>
+<td>S18</td>
+</tr>
+</tbody>
+</table>
+<p>The file <code>schoolX_selection_matrix.csv</code> contains a symmetric matrix where:</p>
+<ul>
+<li>rows and columns correspond to subjects</li>
+<li>each entry (i, j) is the number of students taking both subjects i and j</li>
+</ul>
+<p>This matrix can be derived from the curricula data but is provided for convenience.</p>
+<h2>Data Provided</h2>
+<p>Four instances are available. The data comes from real life data from Canadian high-schools for the 2024-2025 school year. For each school, three files are provided:
+ * <code>shoolX_groups.csv</code> contains the subject, room, teacher, grade, cap and low for each course-group 
+ * <code>schoolX_curricula.csv</code> contains on each line the number of student following a given curriculum and the list of subjects forming that curriculum
+ * <code>scholX_selection_matrix.csv</code> contains the course selection matrix, where a number correspond to the number of student taking both the column course and the line course</p>
+<h2>Goal</h2>
+<h2>Goal</h2>
+<p>The goal is to:</p>
+<ol>
+<li>Assign each course-group to a time cluster</li>
+<li>Assign students to course-groups</li>
+</ol>
+<p>Such that:
+- no student is assigned to two course-groups in the same cluster
+- no teacher is teaching two course-groups in the same cluster
+- no room is being used by two course-groups in the same cluster
+- capacities (<code>cap</code>) are respected
+- minimum sizes (<code>low</code>) are respected</p>
+<p>Objective:
+- Balance the number of students across course-groups of the same subject</p>
+<p>A subject is perfectly balanced if all its course-groups have the same number of students.</p>
+
+
+	</div>
+
+
+
+</div>
+
+<div id="footer">
+
+    <center><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. </center>
+
+</div>
+  <!-- float footer to bottom of page -->
+  <script>
+
+    $(document).ready(function() {
+
+     var docHeight = $(window).height();
+     var footerHeight = $('#footer').height();
+     var footerTop = $('#footer').position().top + footerHeight;
+
+     if (footerTop + 20 < docHeight) {
+      $('#footer').css('margin-top',  (docHeight - (footerTop + 20)) + 'px');
+     }
+    });
+   </script>
+</body>
+
+</html>
