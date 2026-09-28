@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- <link rel="shortcut icon" href="../../assets/ico/favicon.png"> -->
+
+	<title>012: Nonogram</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/csplib-PR-builds/PR-252/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<link href="/csplib-PR-builds/PR-252/css/main.css" rel="stylesheet">
+	<script src="/csplib-PR-builds/PR-252/js/jquery.min.js" ></script>
+
+	<!-- Enable table sorting -->
+	<script src="/csplib-PR-builds/PR-252/js/tablesorter/jquery.tablesorter.min.js"></script>
+	<link rel="stylesheet" href="/csplib-PR-builds/PR-252/js/tablesorter/blue/style.css" type="text/css"/>
+	<script type="text/javascript">
+	$(function() {
+		$(".tablesorter").tablesorter();
+	});
+	</script>
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML.js">
+	MathJax.Hub.Config({
+	  	tex2jax: {
+	    inlineMath: [['$','$'], ['\\(','\\)']],
+	    processEscapes: true
+	  	}
+	});
+	</script>
+
+  
+	<link type="text/css" rel="stylesheet" href="/csplib-PR-builds/PR-252/syntax_highlighter/shCoreDefault.css"/>
+
+</head>
+
+<body>
+
+	<ol class="breadcrumb">
+    	  <li><a href="/csplib-PR-builds/PR-252/">CSPLib</a></li>
+
+  <li><a href="/csplib-PR-builds/PR-252/Problems">Problems</a></li>
+  <li><a href="/csplib-PR-builds/PR-252/Problems/prob012">prob012</a></li>
+
+  <li><a href="/csplib-PR-builds/PR-252/Problems/prob012/models">Models</a></li>
+  <li>nonogram_swi_backtracking.pl</li>
+	</ol>
+
+	<div class="container">
+
+		<div class="page-header">
+			<h1>012: Nonogram</h1>
+
+
+<!-- macro to Not made a link if on the page the link links to -->
+
+
+<header class="nav-header">
+<div class="nav-container">
+  <nav class="nav">
+  <ul>
+     	<li><a href="/csplib-PR-builds/PR-252/Problems/prob012/">Specification</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-252/Problems/prob012/data">Data files</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-252/Problems/prob012/results">Results</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-252/Problems/prob012/references">References</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-252/Problems/prob012/models">Models</a></li>
+
+     	<li><a href="/csplib-PR-builds/PR-252/Problems/prob012/cite">Cite</a></li>
+
+    <li><a href="/csplib-PR-builds/PR-252/Problems/prob012.json" >Json</a></li>
+
+    <li style="float:right"><a href="https://github.com/csplib/csplib/blob/main/Problems/prob012/models/nonogram_swi_backtracking.pl">Edit Page</a></li>
+  </ul>
+  </nav>
+</div>
+</header>
+
+
+		</div>
+
+
+<a href="/csplib-PR-builds/PR-252/Problems/prob012/models/nonogram_swi_backtracking.pl">Download</a>
+<pre >% 1 for filled blocks, 0 for gaps
+% Given constraints: for each row and column, a list of block lengths is stored.
+% This is just the example instance (a 5x5 plus sign); the solver takes the
+% clues as arguments, so the same relation solves any instance.
+row_constraints([[1], [3], [5], [3], [1]]).
+col_constraints([[1], [3], [5], [3], [1]]).
+
+% ----------------------------------------------------------------------------
+% MAIN SOLVER
+% ----------------------------------------------------------------------------
+
+% nonogram(+RowCounts, +ColCounts, -Solution): Solution is a solved grid of
+% 0/1 rows whose rows and columns satisfy all block clues.
+nonogram(RowCounts, ColCounts, Solution):-
+    length(RowCounts, NumRows),
+    length(ColCounts, NumCols),
+    length(Solution, NumRows), % Create a 2D solution matrix with fresh variables
+    maplist(flip_length(NumCols), Solution),
+    findsol(RowCounts, ColCounts, Solution, []). % Solve row by row, [] = no rows set yet
+
+% Solve row by row: fills one row with check_line, then checks if columns are
+% still possible (early backtracking), then proceeds to the next row.
+% findsol(+RowCounts, +ColCounts, ?Lines, +DoneRows)
+% Base case: all rows are filled. The partial check below only rules out dead
+% prefixes, so the finished columns are now checked against their full clues.
+findsol([], ColCounts, [], DoneRows) :-
+    my_transpose(DoneRows, Columns),
+    maplist(check_line, ColCounts, Columns).
+findsol([RC|RCRest], ColCounts, [FirstLine|RestLines], DoneRows):-
+    check_line(RC, FirstLine),  % set current row via backtracking
+    append(DoneRows, [FirstLine], NewDoneRows), % add completed row to done rows
+    my_transpose(NewDoneRows, Transposed), % Transpose done rows
+    maplist(check_partial_line, ColCounts, Transposed), % checks if columns are still possible -&gt; early backtracking
+    findsol(RCRest, ColCounts, RestLines, NewDoneRows). % recurse on remaining rows
+
+% Helper: Check if a partial column is still feasible with current rows
+% check_partial_line(+Bs, +Cells): the partial column Cells is still feasible
+% No cells left in the partial column -&gt; ok, later rows can still satisfy the clue
+check_partial_line(_, []).
+% No more constraints but next a 1 -&gt; impossible -&gt; FAIL
+check_partial_line([], [1|_]) :- fail.
+% Current cell is 0 -&gt; skip, continue with same constraints. This also covers the
+% "no constraints left, next is 0" case, so no separate [] clause is needed
+% (a separate one would overlap this and re-derive the same column twice).
+check_partial_line(Bs, [0|Rest]) :-
+    check_partial_line(Bs, Rest).
+% Current cell is 1 -&gt; consume exactly B ones (plus separator), then the next blocks
+check_partial_line([B|Bs], [1|Rest]) :-
+    consume_block(B, [1|Rest], After),
+    check_partial_line(Bs, After).
+
+% Consume a block of 1s: verify block length and separator
+% Base case: block fully consumed and the column ends here
+% consume_block(+B, +Cells, -After): consume B leading 1s, After is the remainder
+consume_block(0, [], []).
+
+% Block fully consumed: the next cell must be the separating 0
+consume_block(0, [0|Rest], Rest).
+
+% Block not fully consumed but column ends -&gt; ok, more rows will be added later.
+% Guarded with B &gt; 0 so it does not overlap the base case above when B = 0
+% (that overlap would consume the same column twice -&gt; duplicate solutions).
+consume_block(B, [], []) :- B &gt; 0.
+
+% Recursive case: consume one 1 from the block
+consume_block(B, [1|Rest], After) :-
+    B &gt; 0,
+    B1 is B - 1,
+    consume_block(B1, Rest, After).
+
+% Base case: if no constraints left, fill remaining cells with 0
+% check_line(+Blocks, ?Line): Line satisfies the block-length constraints
+check_line([], Line) :-
+    maplist(=(0), Line).
+
+% Recursive case: check block of length B followed by remaining blocks
+check_line([B|Bs], Line) :-
+    % Optional leading gap (0 or more cells) filled with 0
+    append(Gap, Rest, Line), % Gap +Rest =Line
+    maplist(=(0), Gap),
+    % Block of exactly B consecutive 1s
+    length(Block, B),
+    append(Block, After, Rest), % Gap (all 0) + Block (all 1) + After (with leading 0)=Line
+    maplist(=(1), Block),
+    check_after(Bs, After).  % After the block, check remaining blocks with required separation
+
+% Base case: if no more blocks, fill remaining cells with 0
+% check_after(+Blocks, ?After): the cells after a block satisfy the remaining blocks
+check_after([], After) :-
+    maplist(=(0), After).
+
+% Recursive case: at least one 0 gap required between blocks, then check remaining blocks.
+% The block list must be non-empty here, otherwise this would overlap the base
+% case above and re-derive the same line twice (spurious duplicate solutions).
+check_after([B|Bs], [0|After]) :- % After = 0 + After
+    check_line([B|Bs], After).
+
+% ----------------------------------------------------------------------------
+% HELPER FUNCTIONS
+% ----------------------------------------------------------------------------
+
+% flip_length(+Length, ?List): List has the given Length
+flip_length(Length, List) :- length(List, Length).
+
+% Custom transpose: convert rows to columns without library
+% Base case: empty matrix
+% my_transpose(+Rows, -Cols): Cols is the transpose of the matrix Rows
+my_transpose([], []).
+
+% Base case: all rows empty
+my_transpose([[]|_], []).
+
+% Recursive case: extract first element from each row and recurse
+my_transpose(Rows, [Col|Cols]) :-
+    maplist(nth0(0), Rows, Col),
+    maplist(rest_of_list, Rows, RestRows),
+    my_transpose(RestRows, Cols).
+
+% Helper: extract first element of a list
+% rest_of_list(+List, -Tail): Tail is List without its first element
+rest_of_list([_|T], T).
+
+</pre>
+
+
+	</div>
+
+
+<!-- Syntax highlighter  -->
+<script type="text/javascript" src="/csplib-PR-builds/PR-252/syntax_highlighter/shCore.js"></script>
+<script type="text/javascript" src="/csplib-PR-builds/PR-252/syntax_highlighter/shAutoloader.js" ></script>
+<script type="text/javascript">
+    SyntaxHighlighter.autoloader(
+
+    // Languages that have a language page in csplib
+    // Only the Title from specification.md converted to lower case should be used.
+    ['comet',        '/csplib-PR-builds/PR-252/js/shBrushComet.js'],
+    ['eclipse',      '/csplib-PR-builds/PR-252/js/shBrushECLiPSe.js'],
+    ['essence',      '/csplib-PR-builds/PR-252/js/shBrushEssence.js'],
+    ['essenceprime', '/csplib-PR-builds/PR-252/js/shBrushEssencePrime.js'],
+    ['minizinc',     '/csplib-PR-builds/PR-252/js/shBrushMiniZinc.js'],
+
+
+    // Standard Programming languages
+    ['cpp','hpp','hh','cc','h','c', '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushCpp.js'],
+    ['erl','hrl', '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushErlang.js'] ,
+    ['cs'       , '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushCSharp.js'] ,
+    ['groovy'   , '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushGroovy.js'] ,
+    ['java'     , '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushJava.js']   ,
+    ['js'       , '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushJScript.js'],
+    ['php'      , '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushPhp.js']    ,
+    ['pl'       , '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushPerl.js']   ,
+    ['py'       , '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushPython.js'] ,
+    ['rb'       , '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushRuby.js']   ,
+    ['scala'    , '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushScala.js']  ,
+    ['xml'      , '/csplib-PR-builds/PR-252/syntax_highlighter/shBrushXml.js']
+ 	);
+
+	SyntaxHighlighter.defaults['toolbar'] = false;
+  SyntaxHighlighter.all();
+</script>
+
+
+</div>
+
+<div id="footer">
+
+    <center><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. </center>
+
+</div>
+  <!-- float footer to bottom of page -->
+  <script>
+
+    $(document).ready(function() {
+
+     var docHeight = $(window).height();
+     var footerHeight = $('#footer').height();
+     var footerTop = $('#footer').position().top + footerHeight;
+
+     if (footerTop + 20 < docHeight) {
+      $('#footer').css('margin-top',  (docHeight - (footerTop + 20)) + 'px');
+     }
+    });
+   </script>
+</body>
+
+</html>
